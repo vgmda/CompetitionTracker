@@ -9,6 +9,10 @@ namespace CompetitionLibrary
 
         public int MatchupRound { get; set; }
 
+        private static void Main(string[] args)
+        {
+            Console.WriteLine("Hellow");
+        }
 
     }
 }
