@@ -6,5 +6,10 @@ namespace CompetitionUI
         {
             InitializeComponent();
         }
+
+        private void tournamentName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
