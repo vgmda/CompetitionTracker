@@ -19,6 +19,7 @@ namespace CompetitionLibrary
         /// </summary>
         public Matchup ParentMatchup { get; set; }
 
+        
 
     }
 }
