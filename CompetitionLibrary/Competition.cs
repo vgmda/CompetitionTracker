@@ -1,7 +1,7 @@
 ﻿using System;
 namespace CompetitionLibrary
 {
-    public class Tournament
+    public class Competition
     {
         public string TournamentName { get; set; }
 
