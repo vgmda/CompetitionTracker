@@ -226,7 +226,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CompetitionViewerForm";
-            this.Text = "Tournament Viewer";
+            this.Text = "Competition Viewer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
