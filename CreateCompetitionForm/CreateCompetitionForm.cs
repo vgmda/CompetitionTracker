@@ -6,5 +6,10 @@ namespace CreateCompetitionForm
         {
             InitializeComponent();
         }
+
+        private void competitionNameValue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
