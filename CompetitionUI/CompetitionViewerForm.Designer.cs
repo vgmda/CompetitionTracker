@@ -32,7 +32,8 @@
             this.headerLabel = new System.Windows.Forms.Label();
             this.tournamentName = new System.Windows.Forms.Label();
             this.roundLabel = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.roundDropDown = new System.Windows.Forms.ComboBox();
+            this.unplayedOnlyCheckbox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -70,13 +71,27 @@
             this.roundLabel.Text = "Round";
             this.roundLabel.Click += new System.EventHandler(this.label1_Click);
             // 
-            // comboBox1
+            // roundDropDown
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(126, 83);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 33);
-            this.comboBox1.TabIndex = 3;
+            this.roundDropDown.FormattingEnabled = true;
+            this.roundDropDown.Location = new System.Drawing.Point(122, 83);
+            this.roundDropDown.Name = "roundDropDown";
+            this.roundDropDown.Size = new System.Drawing.Size(199, 33);
+            this.roundDropDown.TabIndex = 3;
+            this.roundDropDown.SelectedIndexChanged += new System.EventHandler(this.roundDropDown_SelectedIndexChanged);
+            // 
+            // unplayedOnlyCheckbox
+            // 
+            this.unplayedOnlyCheckbox.AutoSize = true;
+            this.unplayedOnlyCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.unplayedOnlyCheckbox.Font = new System.Drawing.Font("Segoe UI Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.unplayedOnlyCheckbox.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.unplayedOnlyCheckbox.Location = new System.Drawing.Point(122, 122);
+            this.unplayedOnlyCheckbox.Name = "unplayedOnlyCheckbox";
+            this.unplayedOnlyCheckbox.Size = new System.Drawing.Size(199, 41);
+            this.unplayedOnlyCheckbox.TabIndex = 4;
+            this.unplayedOnlyCheckbox.Text = "Unplayed Only\r\n";
+            this.unplayedOnlyCheckbox.UseVisualStyleBackColor = true;
             // 
             // CompetitionViewerForm
             // 
@@ -84,7 +99,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(741, 730);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.unplayedOnlyCheckbox);
+            this.Controls.Add(this.roundDropDown);
             this.Controls.Add(this.roundLabel);
             this.Controls.Add(this.tournamentName);
             this.Controls.Add(this.headerLabel);
@@ -103,6 +119,7 @@
         private Label headerLabel;
         private Label tournamentName;
         private Label roundLabel;
-        private ComboBox comboBox1;
+        private ComboBox roundDropDown;
+        private CheckBox unplayedOnlyCheckbox;
     }
 }
