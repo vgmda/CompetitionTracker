@@ -41,6 +41,8 @@
             this.teamTwoScoreText = new System.Windows.Forms.TextBox();
             this.teamTwoScoreLabel = new System.Windows.Forms.Label();
             this.teamTwoName = new System.Windows.Forms.Label();
+            this.versusLabel = new System.Windows.Forms.Label();
+            this.scoreButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // headerLabel
@@ -172,12 +174,42 @@
             this.teamTwoName.TabIndex = 9;
             this.teamTwoName.Text = "<team two>";
             // 
+            // versusLabel
+            // 
+            this.versusLabel.AutoSize = true;
+            this.versusLabel.Font = new System.Drawing.Font("Segoe UI Light", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.versusLabel.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.versusLabel.Location = new System.Drawing.Point(405, 292);
+            this.versusLabel.Name = "versusLabel";
+            this.versusLabel.Size = new System.Drawing.Size(67, 37);
+            this.versusLabel.TabIndex = 12;
+            this.versusLabel.Text = "-VS-";
+            this.versusLabel.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // scoreButton
+            // 
+            this.scoreButton.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.scoreButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(102)))), ((int)(((byte)(102)))), ((int)(((byte)(102)))));
+            this.scoreButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.scoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.scoreButton.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.scoreButton.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.scoreButton.Location = new System.Drawing.Point(587, 310);
+            this.scoreButton.Name = "scoreButton";
+            this.scoreButton.Size = new System.Drawing.Size(93, 47);
+            this.scoreButton.TabIndex = 13;
+            this.scoreButton.Text = "Score";
+            this.scoreButton.UseVisualStyleBackColor = true;
+            this.scoreButton.Click += new System.EventHandler(this.button1_Click);
+            // 
             // CompetitionViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(741, 730);
+            this.ClientSize = new System.Drawing.Size(723, 672);
+            this.Controls.Add(this.scoreButton);
+            this.Controls.Add(this.versusLabel);
             this.Controls.Add(this.teamTwoScoreText);
             this.Controls.Add(this.teamTwoScoreLabel);
             this.Controls.Add(this.teamTwoName);
@@ -214,5 +246,7 @@
         private TextBox teamTwoScoreText;
         private Label teamTwoScoreLabel;
         private Label teamTwoName;
+        private Label versusLabel;
+        private Button scoreButton;
     }
 }
