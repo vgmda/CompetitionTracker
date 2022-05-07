@@ -8,6 +8,6 @@ namespace CompetitionLibrary
 {
     public interface IDataConnection
     {
-
+        Prize CreatePrize(Prize model);
     }
 }
