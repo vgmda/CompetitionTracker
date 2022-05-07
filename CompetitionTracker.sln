@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompetitionLibrary", "Compe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompetitionUI", "CompetitionUI\CompetitionUI.csproj", "{F2A5662C-F6A5-4AF8-B0EB-42060ADEC071}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateCompetitionForm", "CreateCompetitionForm\CreateCompetitionForm.csproj", "{29F9152A-2ABC-45BB-B00C-649136C85B67}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{F2A5662C-F6A5-4AF8-B0EB-42060ADEC071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2A5662C-F6A5-4AF8-B0EB-42060ADEC071}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2A5662C-F6A5-4AF8-B0EB-42060ADEC071}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29F9152A-2ABC-45BB-B00C-649136C85B67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29F9152A-2ABC-45BB-B00C-649136C85B67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29F9152A-2ABC-45BB-B00C-649136C85B67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29F9152A-2ABC-45BB-B00C-649136C85B67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
