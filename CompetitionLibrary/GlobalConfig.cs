@@ -10,9 +10,17 @@ namespace CompetitionLibrary
     {
         public static List<IDataConnection> Connections { get; private set; }
 
-        public static void InitializeConnections(bool datavase, bool textFiles)
+        public static void InitializeConnections(bool database, bool textFiles)
         {
+            if (database)
+            {
+                // do something
+            }
 
+            if (textFiles)
+            {
+                // do something
+            }    
         }
     }
 }
