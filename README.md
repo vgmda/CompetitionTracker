@@ -1,6 +1,6 @@
 # Competition Tracker C# Application using WinForm UI
 
-#### Description:
+#### _Description:_
 
 Design and deploy a C# windows based application which generates a single-elimination style matchup.
 
@@ -12,12 +12,11 @@ C1(C)----Semi-final2(Semi-final2);
 D1(D)----Semi-final2(Semi-final2);
 Semi-final1(Semi-final1)----Winner(Winner);
 Semi-final2(Semi-final2)----Winner(Winner);
-
 ```
 
 ---
 
-Technology Utilized:
+#### _Technology Utilized:_
 
 *   [x] WinForm application
 *   [x] Class Library
