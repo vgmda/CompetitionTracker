@@ -10,7 +10,7 @@ namespace CompetitionLibrary
     {
         public Prize CreatePrize(Prize model)
         {
-            throw new NotImplementedException();
+            model.
         }
     }
 }
