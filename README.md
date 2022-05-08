@@ -6,12 +6,12 @@ Design and deploy a C# windows based application which generates a single-elimin
 
 ```mermaid
 graph LR;
-A1(A)----Semi-final1(Semi-final1);
-B1(B)----Semi-final1(Semi-final1);
-C1(C)----Semi-final2(Semi-final2);
-D1(D)----Semi-final2(Semi-final2);
-Semi-final1(Semi-final1)----Winner(Winner);
-Semi-final2(Semi-final2)----Winner(Winner);
+A1(A)----A/B(A/B);
+B1(B)----A/B(A/B);
+C1(C)----C/D(C/D);
+D1(D)----C/D(C/D);
+A/B(A/B)----Winner(Winner);
+C/D(C/D)----Winner(Winner);
 ```
 
 ---
