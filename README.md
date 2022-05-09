@@ -41,4 +41,4 @@ C/D(C/D)----Winner(Winner);
 
 **Key Concepts:**
 
-<table><tbody><tr><td><ul><li>Email</li></ul></td><td><ul><li>Interfaces</li></ul></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>
+<table><tbody><tr><td>Email</td><td>Interfaces</td></tr><tr><td>SQL</td><td>Random Ordering</td></tr><tr><td>Custom Events</td><td>Texting</td></tr><tr><td>Error Handling</td><td>User Testing</td></tr></tbody></table>
