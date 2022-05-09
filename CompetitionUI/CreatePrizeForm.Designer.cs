@@ -88,7 +88,7 @@
             this.placeNameLabel.Size = new System.Drawing.Size(152, 37);
             this.placeNameLabel.TabIndex = 25;
             this.placeNameLabel.Text = "Place Name";
-            this.placeNameLabel.Click += new System.EventHandler(this.label1_Click);
+            
             // 
             // prizeAmountValue
             // 
@@ -151,6 +151,7 @@
             this.createPrizeButton.TabIndex = 32;
             this.createPrizeButton.Text = "Create Prize";
             this.createPrizeButton.UseVisualStyleBackColor = true;
+            this.createPrizeButton.Click += new System.EventHandler(this.createPrizeButton_Click);
             // 
             // CreatePrizeForm
             // 
@@ -171,7 +172,7 @@
             this.Controls.Add(this.headerLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CreatePrizeForm";
             this.ResumeLayout(false);
             this.PerformLayout();
