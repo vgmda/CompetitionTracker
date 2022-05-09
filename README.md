@@ -33,4 +33,8 @@ C/D(C/D)----Winner(Winner);
 
 ### _Design:_
 
-**Structure:** Windows Forms application and Class Library
+> **Structure:** Windows Forms application and Class Library
+> 
+> **Data:** SQL and/or Text File
+> 
+> **Users:** One client layer at the time
