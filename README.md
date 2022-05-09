@@ -38,3 +38,7 @@ C/D(C/D)----Winner(Winner);
 > **Data:** SQL and/or Text File
 > 
 > **Users:** One client layer at the time
+
+**Key Concepts:**
+
+<table><tbody><tr><td><ul><li>Email</li></ul></td><td><ul><li>Interfaces</li></ul></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>
