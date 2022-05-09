@@ -16,7 +16,7 @@ C/D(C/D)----Winner(Winner);
 
 ---
 
-#### _Technology Utilized:_
+### _Technology Utilized:_
 
 *   [x] WinForm application
 *   [x] Class Library
@@ -30,3 +30,7 @@ C/D(C/D)----Winner(Winner);
 *   [x] Advanced Debugging
 
 ---
+
+### _Design:_
+
+**Structure:** Windows Forms application and Class Library
