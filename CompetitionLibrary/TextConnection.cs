@@ -8,9 +8,12 @@ namespace CompetitionLibrary
 {
     public class TextConnection : IDataConnection
     {
+        // TODO - Write up the createPrize for text files
         public Prize CreatePrize(Prize model)
         {
-            throw new NotImplementedException();
+            model.Id = 1;
+           
+            return model;
         }
     }
 }
