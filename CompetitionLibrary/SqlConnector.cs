@@ -10,7 +10,9 @@ namespace CompetitionLibrary
     {
         public Prize CreatePrize(Prize model)
         {
-            model.
+            model.Id = 1;
+
+            return model;
         }
     }
 }
