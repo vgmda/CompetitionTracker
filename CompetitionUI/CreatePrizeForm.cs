@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompetitionLibrary;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,13 @@ namespace CompetitionUI
 
         private void createPrizeButton_Click(object sender, EventArgs e)
         {
+            if (ValidateForm())
+            {
+                Prize model = new Prize();
+                model.PlaceName = placeNameValue.Text;
+                model.PlaceNumber = placeNumberLabel.Text;
 
+            }
 
         }
 
@@ -44,6 +51,26 @@ namespace CompetitionUI
                 output = false;
             }
 
+            decimal prizeAmount = 0;
+            int prizePercentage = 0;
+
+            bool prizeAmountValid = decimal.TryParse(prizeAmountValue.Text, out prizeAmount);
+            bool prizePercentageValid = int.TryParse(prizePercentageValue.Text, out prizePercentage);
+
+            if (!prizeAmountValid || !prizePercentageValid)
+            {
+                output = false;    
+            }    
+
+            if (prizeAmount <= 0 && prizePercentage <= 0)
+            {
+                output = false;
+            }
+
+            if (prizePercentage < 0 || prizePercentage > 100)
+            {
+                output = false;
+            }
             return output;
         }
     }
