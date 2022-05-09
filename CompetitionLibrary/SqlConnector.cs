@@ -8,6 +8,11 @@ namespace CompetitionLibrary
 {
     public class SqlConnector : IDataConnection
     {
+        /// <summary>
+        /// Saves a new prize to the database
+        /// </summary>
+        /// <param name="model">The prize information</param>
+        /// <returns>The prize information, including the unique identifier</returns>
         public Prize CreatePrize(Prize model)
         {
             model.Id = 1;
