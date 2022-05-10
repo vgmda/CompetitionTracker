@@ -1,6 +1,7 @@
 ﻿using CompetitionLibrary.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,10 @@ namespace CompetitionLibrary.DataAccess
         /// <returns>The prize information, including the unique identifier</returns>
         public Prize CreatePrize(Prize model)
         {
-            model.Id = 1;
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournamets"))
+            {
 
-            return model;
+            }
         }
     }
 }
