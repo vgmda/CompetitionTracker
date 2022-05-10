@@ -23,4 +23,10 @@ namespace CompetitionLibrary
             }
         }
     }
+
+    // Connection string value from App.config
+    public static string CnnString(string name)
+    {
+        return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+    }
 }
