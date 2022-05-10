@@ -36,6 +36,10 @@ namespace CompetitionUI
                 }
                
             }
+            else
+            {
+                MessageBox.Show("This form has invalid information. Please check it and try again.");
+            }
 
         }
 
