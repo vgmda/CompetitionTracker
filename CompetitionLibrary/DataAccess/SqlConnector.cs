@@ -1,4 +1,5 @@
 ﻿using CompetitionLibrary.Models;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,7 +21,8 @@ namespace CompetitionLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Tournamets"))
             {
-
+                var p = new DynamicParameters();
+                p.Add()
             }
         }
     }
