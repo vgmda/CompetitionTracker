@@ -43,7 +43,7 @@ namespace CompetitionLibrary
             int.TryParse(placeNumber, out placeNumberValue);
             PlaceNumber = placeNumberValue;
 
-            decimal.prizeAmountValue = 0;
+            decimal prizeAmountValue = 0;
             decimal.TryParse(prizeAmount, out prizeAmountValue);
             PrizeAmount = prizeAmountValue;
 

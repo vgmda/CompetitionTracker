@@ -22,10 +22,19 @@ namespace CompetitionUI
         {
             if (ValidateForm())
             {
-                Prize model = new Prize();
-                model.PlaceName = placeNameValue.Text;
-                model.PlaceNumber = placeNumberLabel.Text;
+                Prize model = new Prize(
+                    placeNameValue.Text, 
+                    placeNumberValue.Text, 
+                    prizeAmountValue.Text, 
+                    prizePercentageValue.Text);
 
+                // List of IDataConnection, either SQL or Text
+                foreach (IDataConnection db in GlobalConfig.Connections)
+                {
+                    db.CreatePrize(model); 
+
+                }
+               
             }
 
         }
