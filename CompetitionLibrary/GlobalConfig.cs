@@ -1,4 +1,6 @@
-﻿namespace CompetitionLibrary
+﻿using CompetitionLibrary.DataAccess;
+
+namespace CompetitionLibrary
 {
     public static class GlobalConfig
     {
@@ -16,7 +18,7 @@
             if (textFiles)
             {
                 // TODO - Create the Text Connection
-                TextConnection text = new TextConnection();
+                TextConnector text = new TextConnector();
                 Connections.Add(text);
             }
         }

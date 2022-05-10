@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CompetitionLibrary
+namespace CompetitionLibrary.Models
 {
     /// <summary>
     /// Represents one person

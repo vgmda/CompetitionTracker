@@ -1,5 +1,5 @@
 ﻿using System;
-namespace CompetitionLibrary
+namespace CompetitionLibrary.Models
 {
     /// <summary>
     /// Repsents what the prize is for the given place

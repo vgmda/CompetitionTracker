@@ -1,4 +1,6 @@
 ﻿using CompetitionLibrary;
+using CompetitionLibrary.DataAccess;
+using CompetitionLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
