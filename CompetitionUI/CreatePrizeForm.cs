@@ -34,7 +34,12 @@ namespace CompetitionUI
                     db.CreatePrize(model); 
 
                 }
-               
+
+                placeNameValue.Text = "";
+                placeNumberValue.Text = "";
+                prizeAmountValue.Text = "0";
+                prizePercentageValue.Text = "0";
+
             }
             else
             {
@@ -49,7 +54,7 @@ namespace CompetitionUI
             int placeNumber = 0;
             bool placeNumberValidNumber = int.TryParse(placeNumberValue.Text, out placeNumber);
             
-            if (placeNumberValidNumber == false)
+            if (!placeNumberValidNumber)
             {
                 output = false;
             }
@@ -70,7 +75,7 @@ namespace CompetitionUI
             bool prizeAmountValid = decimal.TryParse(prizeAmountValue.Text, out prizeAmount);
             bool prizePercentageValid = double.TryParse(prizePercentageValue.Text, out prizePercentage);
 
-            if (!prizeAmountValid || prizePercentageValid == false)
+            if (!prizeAmountValid || !prizePercentageValid)
             {
                 output = false;    
             }    
