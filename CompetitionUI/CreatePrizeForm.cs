@@ -47,9 +47,9 @@ namespace CompetitionUI
         {
             bool output = true;
             int placeNumber = 0;
-            bool placeNumberValidNumber = int.TryParse(placeNameValue.Text, out placeNumber);
+            bool placeNumberValidNumber = int.TryParse(placeNumberValue.Text, out placeNumber);
             
-            if (!placeNumberValidNumber)
+            if (placeNumberValidNumber == false)
             {
                 output = false;
             }
@@ -70,7 +70,7 @@ namespace CompetitionUI
             bool prizeAmountValid = decimal.TryParse(prizeAmountValue.Text, out prizeAmount);
             bool prizePercentageValid = double.TryParse(prizePercentageValue.Text, out prizePercentage);
 
-            if (!prizeAmountValid || !prizePercentageValid)
+            if (!prizeAmountValid || prizePercentageValid == false)
             {
                 output = false;    
             }    
