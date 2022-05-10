@@ -1,4 +1,5 @@
 ﻿using CompetitionLibrary.DataAccess;
+using System.Configuration;
 
 namespace CompetitionLibrary
 {
@@ -22,11 +23,16 @@ namespace CompetitionLibrary
                 Connections.Add(text);
             }
         }
+
+
+        // Connection string value from App.config
+        public static string CnnString(string name)
+        {
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+        }
     }
 
-    // Connection string value from App.config
-    public static string CnnString(string name)
-    {
-        return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-    }
+
+
+    
 }
