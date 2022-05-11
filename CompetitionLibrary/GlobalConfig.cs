@@ -10,16 +10,27 @@ namespace CompetitionLibrary
 
 
 
-        public static void InitializeConnections(string connectionType)
+        public static void InitializeConnections(DatabaseType db)
         {
-            if (connectionType == "sql")
+            switch (db)
+            {
+                case DatabaseType.Sql:
+                    break;
+                case DatabaseType.TextFile:
+                    break;
+                default:
+                    break;
+            }
+
+
+            if (db == DatabaseType.Sql)
             {
                 // TODO - Set up the SQL Connector properly
                 SqlConnector sql = new SqlConnector();
                 Connections = sql;
             }
 
-            else if (connectionType == "text")
+            else if (db == DatabaseType.TextFile)
             {
                 // TODO - Create the Text Connection
                 TextConnector text = new TextConnector();

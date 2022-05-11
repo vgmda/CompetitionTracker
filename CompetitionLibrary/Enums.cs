@@ -6,5 +6,11 @@ using System.Threading.Tasks;
 
 namespace CompetitionLibrary
 {
-    
+    public enum DatabaseType
+    { 
+        Sql,
+        TextFile
+    }
+
+
 }
