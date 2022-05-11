@@ -1,3 +1,5 @@
+using CompetitionLibrary;
+
 namespace CompetitionUI
 {
     internal static class Program
@@ -12,7 +14,8 @@ namespace CompetitionUI
             Application.SetCompatibleTextRenderingDefault(false);
 
             // Initialize the database connections
-            CompetitionLibrary.GlobalConfig.InitializeConnections(true, true);
+
+            CompetitionLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql); ;
             Application.Run(new CreatePrizeForm()); 
 
             // Application.Run(new CompetitionDashboardForm());

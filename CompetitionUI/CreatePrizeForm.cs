@@ -14,7 +14,7 @@ using System.Windows.Forms;
 namespace CompetitionUI
 {
     public partial class CreatePrizeForm : Form
-    {
+    { 
         public CreatePrizeForm()
         {
             InitializeComponent();
@@ -30,12 +30,9 @@ namespace CompetitionUI
                     prizeAmountValue.Text, 
                     prizePercentageValue.Text);
 
-                // List of IDataConnection, either SQL or Text
-                foreach (IDataConnection db in GlobalConfig.Connections)
-                {
-                    db.CreatePrize(model); 
-
-                }
+                
+                // Initialize data connection
+                GlobalConfig.Connection.CreatePrize(model);
 
                 placeNameValue.Text = "";
                 placeNumberValue.Text = "";
