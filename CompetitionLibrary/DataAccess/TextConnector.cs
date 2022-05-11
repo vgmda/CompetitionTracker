@@ -8,9 +8,15 @@ namespace CompetitionLibrary.DataAccess
         // TODO - Write up the createPrize for text files
         public Prize CreatePrize(Prize model)
         {
-            model.Id = 1;
+            // Load the text file
+            // Convert the text to List<Prize>
+            // Find the max ID
+            // Add the new record with the new ID (max + 1)
+            // Convert the prizes to list<string>
+            // Save the list<string> to the text file
 
-            return model;
+
+        
         }
     }
 }
