@@ -1,20 +1,10 @@
 ﻿using CompetitionLibrary;
-using CompetitionLibrary.DataAccess;
 using CompetitionLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CompetitionUI
 {
     public partial class CreatePrizeForm : Form
-    { 
+    {
         public CreatePrizeForm()
         {
             InitializeComponent();
@@ -25,12 +15,11 @@ namespace CompetitionUI
             if (ValidateForm())
             {
                 Prize model = new Prize(
-                    placeNameValue.Text, 
-                    placeNumberValue.Text, 
-                    prizeAmountValue.Text, 
+                    placeNameValue.Text,
+                    placeNumberValue.Text,
+                    prizeAmountValue.Text,
                     prizePercentageValue.Text);
 
-                
                 // Initialize data connection
                 GlobalConfig.Connection.CreatePrize(model);
 
@@ -52,7 +41,7 @@ namespace CompetitionUI
             bool output = true;
             int placeNumber = 0;
             bool placeNumberValidNumber = int.TryParse(placeNumberValue.Text, out placeNumber);
-            
+
             if (!placeNumberValidNumber)
             {
                 output = false;
@@ -76,8 +65,8 @@ namespace CompetitionUI
 
             if (!prizeAmountValid || !prizePercentageValid)
             {
-                output = false;    
-            }    
+                output = false;
+            }
 
             if (prizeAmount <= 0 && prizePercentage <= 0)
             {

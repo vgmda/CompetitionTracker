@@ -1,5 +1,4 @@
-﻿using System;
-namespace CompetitionLibrary.Models
+﻿namespace CompetitionLibrary.Models
 {
     public class Team
     {

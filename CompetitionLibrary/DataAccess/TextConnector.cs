@@ -1,9 +1,4 @@
 ﻿using CompetitionLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompetitionLibrary.DataAccess
 
@@ -14,7 +9,7 @@ namespace CompetitionLibrary.DataAccess
         public Prize CreatePrize(Prize model)
         {
             model.Id = 1;
-           
+
             return model;
         }
     }

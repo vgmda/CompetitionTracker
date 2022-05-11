@@ -1,5 +1,4 @@
-﻿using System;
-namespace CompetitionLibrary.Models
+﻿namespace CompetitionLibrary.Models
 {
     /// <summary>
     /// Repsents what the prize is for the given place
@@ -49,10 +48,10 @@ namespace CompetitionLibrary.Models
 
             double prizePercentageValue = 0;
             double.TryParse(prizePercentage, out prizePercentageValue);
-            PrizePercentage = prizePercentageValue; 
+            PrizePercentage = prizePercentageValue;
 
 
-        
+
         }
     }
 }

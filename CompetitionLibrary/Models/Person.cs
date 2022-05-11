@@ -1,5 +1,4 @@
-﻿using System;
-namespace CompetitionLibrary.Models
+﻿namespace CompetitionLibrary.Models
 {
     /// <summary>
     /// Represents one person
@@ -23,8 +22,8 @@ namespace CompetitionLibrary.Models
         /// </summary>
         public string MobileNumber { get; set; }
 
-        
-        
+
+
 
     }
 }

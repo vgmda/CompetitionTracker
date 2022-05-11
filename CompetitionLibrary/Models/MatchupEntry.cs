@@ -1,5 +1,4 @@
-﻿using System;
-namespace CompetitionLibrary.Models
+﻿namespace CompetitionLibrary.Models
 {
     public class MatchupEntry
     {
@@ -19,7 +18,7 @@ namespace CompetitionLibrary.Models
         /// </summary>
         public Matchup ParentMatchup { get; set; }
 
-        
+
 
     }
 }
