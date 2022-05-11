@@ -1,7 +1,7 @@
 ﻿using CompetitionLibrary.Models;
 using System.Configuration;
 
-namespace CompetitionLibrary.DataAccess.TextConnector
+namespace CompetitionLibrary.DataAccess.TextHelpers
 {
     public static class TextConnectorProcessor
     {
