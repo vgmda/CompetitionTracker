@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CompetitionLibrary.Models;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompetitionLibrary.DataAccess.TextConnector
 {
@@ -24,6 +20,26 @@ namespace CompetitionLibrary.DataAccess.TextConnector
             }
 
             return File.ReadAllLines(file).ToList();
+        }
+
+        public static List<Prize> ConvertToPrize(this List<string> lines)
+        {
+            List<Prize> output = new List<Prize>();
+
+            foreach (string line in lines)
+            {
+                // cols = columns
+                string[] cols = line.Split(',');
+                Prize p = new Prize();
+                p.Id = int.Parse(cols[0]);
+                p.PlaceNumber = int.Parse(cols[1]);
+                p.PlaceName = cols[2];
+                p.PrizeAmount = decimal.Parse(cols[3]);
+                p.PrizePercentage = double.Parse(cols[4]);
+                output.Add(p);
+            }
+
+            return output;
         }
     }
 }
