@@ -7,10 +7,11 @@ namespace CompetitionLibrary.DataAccess
     public class TextConnector : IDataConnection
     {
         private const string PrizesFile = "Prize.csv";
+        private const string PeopleFile = "Person.csv";
 
         public Person CreatePerson(Person model)
         {
-            throw new NotImplementedException();
+            List<Person> people = PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
         }
 
 

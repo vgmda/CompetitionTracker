@@ -23,6 +23,11 @@ namespace CompetitionUI
 
                 GlobalConfig.Connection.CreatePerson(p);
 
+                firstNameValue.Text = "";
+                lastNameValue.Text = "";
+                emailValue.Text = "";
+                mobileValue.Text = "";
+
             }
             else
             {

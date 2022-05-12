@@ -42,6 +42,17 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
+        public static List<Prize> ConvertToPerson(this List<string> lines)
+        {
+            List<Person> output = new List<Person>();
+
+            foreach (string line in lines)
+            {
+
+            }
+
+        }
+
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
         {
             List<string> lines = new List<string>();
