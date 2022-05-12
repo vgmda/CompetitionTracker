@@ -42,7 +42,7 @@ namespace CompetitionUI
 
             if (firstNameValue.Text.Length == 0)
             {
-                return false; 
+                return false;
             }
 
             if (lastNameValue.Text.Length == 0)
@@ -50,12 +50,12 @@ namespace CompetitionUI
                 return false;
             }
 
-            if(emailValue.Text.Length == 0)
+            if (emailValue.Text.Length == 0)
             {
                 return false;
             }
 
-            if(mobileValue.Text.Length == 0)
+            if (mobileValue.Text.Length == 0)
             {
                 return false;
             }

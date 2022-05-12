@@ -40,6 +40,6 @@ namespace CompetitionLibrary.DataAccess
             return model;
         }
 
-        
+
     }
 }

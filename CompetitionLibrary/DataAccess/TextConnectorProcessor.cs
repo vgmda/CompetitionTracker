@@ -42,14 +42,25 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
-        public static List<Prize> ConvertToPerson(this List<string> lines)
+        public static List<Person> ConvertToPerson(this List<string> lines)
         {
             List<Person> output = new List<Person>();
 
             foreach (string line in lines)
             {
+                string[] cols = line.Split(',');
+                Person p = new Person();
+                p.Id = int.Parse(cols[0]);
+                p.FirstName = cols[1];
+                p.LastName = cols[2];
+                p.EmailAddress = cols[3];
+                p.MobileNumber = cols[4];
+                output.Add(p);
+
 
             }
+
+            return output;
 
         }
 
