@@ -1,5 +1,5 @@
-﻿using CompetitionLibrary.Models;
-using CompetitionLibrary.DataAccess.TextHelpers;
+﻿using CompetitionLibrary.DataAccess.TextHelpers;
+using CompetitionLibrary.Models;
 
 namespace CompetitionLibrary.DataAccess
 
@@ -16,7 +16,13 @@ namespace CompetitionLibrary.DataAccess
             List<Prize> prizes = PrizesFile.FullFilePath().LoadFile().ConvertToPrize();
 
             // Find the max ID 
-            int currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
+            int currentId = 1;
+
+            if (prizes.Count > 0)
+            {
+                currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
             model.Id = currentId;
             // Add the new record with the new ID (max + 1)
             prizes.Add(model);
