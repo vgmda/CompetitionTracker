@@ -8,6 +8,11 @@ namespace CompetitionLibrary.DataAccess
     {
         private const string PrizesFile = "Prize.csv";
 
+        public Prize CreatePerson(Person model)
+        {
+            throw new NotImplementedException();
+        }
+
 
         // TODO - Write up the createPrize for text files
         public Prize CreatePrize(Prize model)

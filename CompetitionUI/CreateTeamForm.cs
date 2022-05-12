@@ -1,4 +1,7 @@
-﻿namespace CompetitionUI
+﻿using CompetitionLibrary;
+using CompetitionLibrary.Models;
+
+namespace CompetitionUI
 {
     public partial class CreateTeamForm : Form
     {
@@ -11,12 +14,20 @@
         {
             if (ValidateForm())
             {
+                Person p = new Person();
 
+                p.FirstName = firstNameValue.Text;
+                p.LastName = lastNameValue.Text;
+                p.EmailAddress = emailValue.Text;
+                p.MobileNumber = mobileValue.Text;
+
+                GlobalConfig.Connection.CreatePerson(p);
 
             }
             else
             {
-               
+                MessageBox.Show("This form has invalid information. Please check it and try again.");
+
             }
         }
 
