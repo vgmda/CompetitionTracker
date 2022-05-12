@@ -74,5 +74,17 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
+
+        public static void SaveToPeopleFile(this List<Person> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+            foreach(Person p in models)
+            {
+                lines.Add($"{ p.Id },{ p.FirstName },{ p.LastName },{ p.EmailAddress },{ p.MobileNumber }");
+            }
+
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
     }
 }

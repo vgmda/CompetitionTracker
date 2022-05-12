@@ -12,6 +12,19 @@ namespace CompetitionLibrary.DataAccess
         public Person CreatePerson(Person model)
         {
             List<Person> people = PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
+
+            int currentId = 1;
+
+            if (people.Count > 0)
+            {
+                currentId = people.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+            people.Add(model);
+            people.SaveToPeopleFile(PeopleFile);
+
+            return model;
         }
 
 
