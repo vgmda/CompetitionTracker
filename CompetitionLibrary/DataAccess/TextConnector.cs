@@ -8,7 +8,7 @@ namespace CompetitionLibrary.DataAccess
     {
         private const string PrizesFile = "Prize.csv";
 
-        public Prize CreatePerson(Person model)
+        public Person CreatePerson(Person model)
         {
             throw new NotImplementedException();
         }
@@ -38,5 +38,7 @@ namespace CompetitionLibrary.DataAccess
 
             return model;
         }
+
+        
     }
 }
