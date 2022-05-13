@@ -29,11 +29,17 @@ namespace CompetitionUI
             selectedTeamMembers.Add(new Person { FirstName = "Test4", LastName = "Tester4" });
 
         }
-
+        /// <summary>
+        /// Refreshing data binding with the lists
+        /// </summary
         private void WireUpLists()
         {
+            selectTeamMemberDropDown.DataSource = null;
+
             selectTeamMemberDropDown.DataSource = availableTeamMembers;
             selectTeamMemberDropDown.DisplayMember = "FullName";
+
+            teamMembersListBox.DataSource = null;
 
             teamMembersListBox.DataSource = selectedTeamMembers;
             teamMembersListBox.DisplayMember = "FullName";
@@ -92,6 +98,16 @@ namespace CompetitionUI
             }
 
             return true;
+        }
+
+        private void addMemberButton_Click(object sender, EventArgs e)
+        {
+            Person p = (Person)selectTeamMemberDropDown.SelectedItem;
+
+            availableTeamMembers.Remove(p);
+            selectedTeamMembers.Add(p);
+
+            WireUpLists();
         }
     }
 }
