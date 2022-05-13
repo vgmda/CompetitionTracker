@@ -55,7 +55,8 @@ namespace CompetitionLibrary.DataAccess
 
         public List<Person> GetPerson_All()
         {
-            throw new NotImplementedException();
+            // Methods already implemented, when returned, it will load and read all people from the file
+            return PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
         }
     }
 }

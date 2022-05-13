@@ -58,7 +58,11 @@ namespace CompetitionUI
                 p.EmailAddress = emailValue.Text;
                 p.MobileNumber = mobileValue.Text;
 
-                GlobalConfig.Connection.CreatePerson(p);
+                p = GlobalConfig.Connection.CreatePerson(p);
+
+                selectedTeamMembers.Add(p);
+
+                WireUpLists();
 
                 firstNameValue.Text = "";
                 lastNameValue.Text = "";
@@ -69,7 +73,6 @@ namespace CompetitionUI
             else
             {
                 MessageBox.Show("This form has invalid information. Please check it and try again.");
-
             }
         }
 
@@ -109,7 +112,7 @@ namespace CompetitionUI
                 availableTeamMembers.Remove(p);
                 selectedTeamMembers.Add(p);
 
-                WireUpLists(); 
+                WireUpLists();
             }
         }
 
@@ -122,7 +125,7 @@ namespace CompetitionUI
                 selectedTeamMembers.Remove(p);
                 availableTeamMembers.Add(p);
 
-                WireUpLists(); 
+                WireUpLists();
             }
 
         }
