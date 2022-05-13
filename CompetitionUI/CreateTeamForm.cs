@@ -14,12 +14,26 @@ namespace CompetitionUI
         public CreateTeamForm()
         {
             InitializeComponent();
+            WireUpLists(); 
+        }
+        /// <summary>
+        /// Create sample data for the lists for testing purposes
+        /// </summary>
+        private void CreateSampleData()
+        {
+
         }
 
         private void WireUpLists()
         {
+            selectTeamMemberDropDown.DataSource = availableTeamMembers;
+            selectTeamMemberDropDown.DisplayMember = "FullName";
+
+            teamMembersListBox.DataSource = selectedTeamMembers;
+            teamMembersListBox.DisplayMember = "FullName";
 
         }
+
 
         private void createMemberButton_Click(object sender, EventArgs e)
         {

@@ -26,9 +26,14 @@
         /// </summary>
         public string MobileNumber { get; set; }
 
-
-
-
+        public string FullName
+        {
+            get
+            {
+                return $"{ FirstName } { LastName }";
+            }
+        }
+            
     }
 }
 
