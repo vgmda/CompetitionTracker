@@ -14,13 +14,22 @@ namespace CompetitionUI
         public CreateTeamForm()
         {
             InitializeComponent();
+
+            // CreateSampleData();
+
             WireUpLists(); 
         }
+
         /// <summary>
         /// Create sample data for the lists for testing purposes
         /// </summary>
         private void CreateSampleData()
         {
+            availableTeamMembers.Add(new Person { FirstName = "Test1", LastName = "Tester1" });
+            availableTeamMembers.Add(new Person { FirstName = "Test2", LastName = "Tester2" });
+
+            selectedTeamMembers.Add(new Person { FirstName = "Test3", LastName = "Tester3" });
+            selectedTeamMembers.Add(new Person { FirstName = "Test4", LastName = "Tester4" });
 
         }
 

@@ -51,5 +51,17 @@ namespace CompetitionLibrary.DataAccess
 
         }
 
+        public List<Person> GetPerson_All()
+        {
+            List<Person> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Competitions")))
+            {
+                output = connection.Query<Person>("dbo.spPeople_GetAll").ToList();
+            }
+
+            return output;
+
+        }
     }
 }
