@@ -109,5 +109,16 @@ namespace CompetitionUI
 
             WireUpLists();
         }
+
+        private void removeSelectedMemberButton_Click(object sender, EventArgs e)
+        {
+            Person p = (Person)teamMembersListBox.SelectedItem;
+
+            selectedTeamMembers.Remove(p);
+            availableTeamMembers.Add(p);
+
+            WireUpLists();
+
+        }
     }
 }
