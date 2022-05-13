@@ -104,20 +104,26 @@ namespace CompetitionUI
         {
             Person p = (Person)selectTeamMemberDropDown.SelectedItem;
 
-            availableTeamMembers.Remove(p);
-            selectedTeamMembers.Add(p);
+            if (p != null)
+            {
+                availableTeamMembers.Remove(p);
+                selectedTeamMembers.Add(p);
 
-            WireUpLists();
+                WireUpLists(); 
+            }
         }
 
         private void removeSelectedMemberButton_Click(object sender, EventArgs e)
         {
             Person p = (Person)teamMembersListBox.SelectedItem;
 
-            selectedTeamMembers.Remove(p);
-            availableTeamMembers.Add(p);
+            if (p != null)
+            {
+                selectedTeamMembers.Remove(p);
+                availableTeamMembers.Add(p);
 
-            WireUpLists();
+                WireUpLists(); 
+            }
 
         }
     }
