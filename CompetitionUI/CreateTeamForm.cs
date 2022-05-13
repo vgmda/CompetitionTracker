@@ -5,11 +5,8 @@ namespace CompetitionUI
 {
     public partial class CreateTeamForm : Form
     {
-        private List<Person> availableTeamMembers = new List<Person>();
+        private List<Person> availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
         private List<Person> selectedTeamMembers = new List<Person>();
-
-
-
 
         public CreateTeamForm()
         {
@@ -17,7 +14,7 @@ namespace CompetitionUI
 
             // CreateSampleData();
 
-            WireUpLists(); 
+            WireUpLists();
         }
 
         /// <summary>

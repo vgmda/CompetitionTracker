@@ -53,6 +53,9 @@ namespace CompetitionLibrary.DataAccess
             return model;
         }
 
-
+        public List<Person> GetPerson_All()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

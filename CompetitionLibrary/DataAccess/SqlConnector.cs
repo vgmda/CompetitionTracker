@@ -7,9 +7,11 @@ namespace CompetitionLibrary.DataAccess
 {
     public class SqlConnector : IDataConnection
     {
+        private const string db = "Competitions";
+
         public Person CreatePerson(Person model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Competitions")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@FirstName", model.FirstName);
@@ -33,7 +35,7 @@ namespace CompetitionLibrary.DataAccess
         /// <returns>The prize information, including the unique identifier</returns>
         public Prize CreatePrize(Prize model)
         {
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Competitions")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 var p = new DynamicParameters();
                 p.Add("@PlaceNumber", model.PlaceNumber);
@@ -55,7 +57,7 @@ namespace CompetitionLibrary.DataAccess
         {
             List<Person> output;
 
-            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString("Competitions")))
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 output = connection.Query<Person>("dbo.spPeople_GetAll").ToList();
             }
