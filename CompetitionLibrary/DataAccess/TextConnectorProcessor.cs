@@ -57,7 +57,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 p.MobileNumber = cols[4];
                 output.Add(p);
 
-
             }
 
             return output;
@@ -79,7 +78,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
         public static void SaveToPeopleFile(this List<Person> models, string fileName)
         {
             List<string> lines = new List<string>();
-            foreach(Person p in models)
+            foreach (Person p in models)
             {
                 lines.Add($"{ p.Id },{ p.FirstName },{ p.LastName },{ p.EmailAddress },{ p.MobileNumber }");
             }

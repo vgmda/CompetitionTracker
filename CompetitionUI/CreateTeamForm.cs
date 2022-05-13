@@ -5,9 +5,20 @@ namespace CompetitionUI
 {
     public partial class CreateTeamForm : Form
     {
+        private List<Person> availableTeamMembers = new List<Person>();
+        private List<Person> selectedTeamMembers = new List<Person>();
+
+
+
+
         public CreateTeamForm()
         {
             InitializeComponent();
+        }
+
+        private void WireUpLists()
+        {
+
         }
 
         private void createMemberButton_Click(object sender, EventArgs e)
