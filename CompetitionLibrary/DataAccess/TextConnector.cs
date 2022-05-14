@@ -63,10 +63,25 @@ namespace CompetitionLibrary.DataAccess
 
         public Team CreateTeam(Team model)
         {
-            List<Team> teams = TeamFile.FullFilePath().LoadFile().ConvertToTeam();
+            List<Team> teams = TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
 
+            // Find the max ID 
+            int currentId = 1;
+
+            if (teams.Count > 0)
+            {
+                currentId = teams.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+
+            teams.Add(model);
+
+            teams.SaveToTeamFile(TeamFile);
 
             return model;
+
+
         }
     }
 }

@@ -63,12 +63,31 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         }
 
-        public static List<Team> ConvertToTeam(this List<string> lines)
+        public static List<Team> ConvertToTeam(this List<string> lines, string peopleFileName)
         {
             // Id, Team Name, List of Ids sparated by the pipe
             // 3,Test's Team,1|2|3
 
+            List<Team> output = new List<Team>();
+            List<Person> people = peopleFileName.FullFilePath().LoadFile().ConvertToPerson();
 
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+                Team t = new Team();
+                t.Id = int.Parse(cols[0]);
+                t.TeamName = cols[1];
+
+                string[] personIds = cols[2].Split('|');
+
+                foreach (string id in personIds)
+                {
+                    t.TeamMembers.Add(people.Where(x => x.Id == int.Parse(id)).First());
+                }
+
+            }
+
+            return output;
 
         }
 
