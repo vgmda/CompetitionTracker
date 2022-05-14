@@ -53,6 +53,11 @@ namespace CompetitionLibrary.DataAccess
             return model;
         }
 
+        public Team CreateTeam(Team model)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Person> GetPerson_All()
         {
             // Methods already implemented, when returned, it will load and read all people from the file

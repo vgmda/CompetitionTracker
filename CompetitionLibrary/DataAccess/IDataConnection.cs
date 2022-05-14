@@ -7,6 +7,7 @@ namespace CompetitionLibrary.DataAccess
     {
         Prize CreatePrize(Prize model);
         Person CreatePerson(Person model);
+        Team CreateTeam(Team model);
         List<Person> GetPerson_All();
     }
 }
