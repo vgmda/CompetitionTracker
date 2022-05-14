@@ -8,6 +8,7 @@ namespace CompetitionLibrary.DataAccess
     {
         private const string PrizesFile = "Prize.csv";
         private const string PeopleFile = "Person.csv";
+        private const string TeamFile = "Team.csv";
 
         public Person CreatePerson(Person model)
         {
@@ -53,15 +54,19 @@ namespace CompetitionLibrary.DataAccess
             return model;
         }
 
-        public Team CreateTeam(Team model)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Person> GetPerson_All()
         {
             // Methods already implemented, when returned, it will load and read all people from the file
             return PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
+        }
+
+        public Team CreateTeam(Team model)
+        {
+            List<Team> teams = TeamFile.FullFilePath().LoadFile().ConvertToTeam();
+
+
+            return model;
         }
     }
 }

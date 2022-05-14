@@ -63,6 +63,15 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         }
 
+        public static List<Team> ConvertToTeam(this List<string> lines)
+        {
+            // Id, Team Name, List of Ids sparated by the pipe
+            // 3,Test's Team,1|2|3
+
+
+
+        }
+
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -85,5 +94,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
     }
 }
