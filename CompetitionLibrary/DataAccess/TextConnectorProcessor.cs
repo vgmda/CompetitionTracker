@@ -114,5 +114,36 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
+        public static void SaveToTeamFile(this List<Team> models, string fileName)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (Team t in models)
+            {
+                lines.Add($"{ t.Id },{ t.TeamName },{ ConvertPeopleListToString(t.TeamMembers) }");
+            }
+
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        private static string ConvertPeopleListToString(List<Person> people)
+        {
+            string output = "";
+
+            if (people.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Person p in people)
+            {
+                output += $"{ p.Id }|";
+            }
+
+            // Removing the trailing pipe character
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
     }
 }

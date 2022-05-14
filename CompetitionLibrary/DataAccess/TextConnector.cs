@@ -74,9 +74,7 @@ namespace CompetitionLibrary.DataAccess
             }
 
             model.Id = currentId;
-
             teams.Add(model);
-
             teams.SaveToTeamFile(TeamFile);
 
             return model;
