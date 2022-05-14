@@ -77,6 +77,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 Team t = new Team();
                 t.Id = int.Parse(cols[0]);
                 t.TeamName = cols[1];
+                output.Add(t);
 
                 string[] personIds = cols[2].Split('|');
 
