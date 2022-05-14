@@ -138,6 +138,8 @@ namespace CompetitionUI
             t.TeamMembers = selectedTeamMembers;
 
             t = GlobalConfig.Connection.CreateTeam(t);
+
+
         }
     }
 }
