@@ -132,7 +132,12 @@ namespace CompetitionUI
 
         private void createTeamButton_Click(object sender, EventArgs e)
         {
+            Team t = new Team();
 
+            t.TeamName = teamNameValue.Text;
+            t.TeamMembers = selectedTeamMembers;
+
+            t = GlobalConfig.Connection.CreateTeam(t);
         }
     }
 }

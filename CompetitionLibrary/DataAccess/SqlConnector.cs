@@ -65,9 +65,18 @@ namespace CompetitionLibrary.DataAccess
 
                 model.Id = p.Get<int>("@id");
 
+                foreach (Person tm in model.TeamMembers)
+                {
+                    p = new DynamicParameters();
+                    p.Add("@TeamId", model.Id);
+                    p.Add("@PersonId", tm.Id);
+
+                    connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
+
+                }
+
                 return model;
             }
-
 
         }
 
