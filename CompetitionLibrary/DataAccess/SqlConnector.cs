@@ -107,7 +107,7 @@ namespace CompetitionLibrary.DataAccess
                     p.Add("@TeamId", team.Id);
                     team.TeamMembers = connection.Query<Person>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
                 }
-                
+
             }
 
             return output;
