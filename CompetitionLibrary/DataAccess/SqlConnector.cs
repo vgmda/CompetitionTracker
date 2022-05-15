@@ -103,7 +103,9 @@ namespace CompetitionLibrary.DataAccess
 
                 foreach (Team team in output)
                 {
-                    team.TeamMembers = connection.Query<Person>("dbo.spTeamMembers_GetByTeam").ToList();
+                    var p = new DynamicParameters();
+                    p.Add("@TeamId", team.Id);
+                    team.TeamMembers = connection.Query<Person>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
                 }
                 
             }
