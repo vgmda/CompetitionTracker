@@ -100,6 +100,12 @@ namespace CompetitionLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 output = connection.Query<Team>("dbo.spTeam_GetAll").ToList();
+
+                foreach (Team team in output)
+                {
+                    team.TeamMembers = connection.Query<Person>("dbo.spTeamMembers_GetByTeam").ToList();
+                }
+                
             }
 
             return output;
