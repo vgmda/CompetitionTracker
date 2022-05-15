@@ -9,5 +9,6 @@ namespace CompetitionLibrary.DataAccess
         Person CreatePerson(Person model);
         Team CreateTeam(Team model);
         List<Person> GetPerson_All();
+        List<Team> GetTeam_All();
     }
 }

@@ -92,5 +92,17 @@ namespace CompetitionLibrary.DataAccess
             return output;
 
         }
+
+        public List<Team> GetTeam_All()
+        {
+            List<Team> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                output = connection.Query<Team>("dbo.spTeam_GetAll").ToList();
+            }
+
+            return output;
+        }
     }
 }

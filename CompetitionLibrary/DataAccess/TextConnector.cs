@@ -81,5 +81,10 @@ namespace CompetitionLibrary.DataAccess
 
 
         }
+
+        public List<Team> GetTeam_All()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
