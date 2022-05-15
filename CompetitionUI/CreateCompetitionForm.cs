@@ -6,6 +6,7 @@ namespace CompetitionUI
     public partial class CreateCompetitionForm : Form
     {
         List<Team> availableTeams = GlobalConfig.Connection.GetTeam_All();
+        List<Team> selectedTeams = new List<Team>();
 
         public CreateCompetitionForm()
         {
@@ -18,6 +19,10 @@ namespace CompetitionUI
         {
             selectTeamDropDown.DataSource = availableTeams;
             selectTeamDropDown.DisplayMember = "TeamName";
+
+            competitionTeamsListBox.DataSource = selectedTeams;
+            competitionTeamsListBox.DisplayMember = "TeamName";
         }
+
     }
 }

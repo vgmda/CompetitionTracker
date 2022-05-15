@@ -35,7 +35,7 @@
             this.prizesListBox = new System.Windows.Forms.ListBox();
             this.deleteSelectedPlayerButton = new System.Windows.Forms.Button();
             this.competitionPlayersLabel = new System.Windows.Forms.Label();
-            this.competitionPlayersListBox = new System.Windows.Forms.ListBox();
+            this.competitionTeamsListBox = new System.Windows.Forms.ListBox();
             this.createPrizeButton = new System.Windows.Forms.Button();
             this.addTeamButton = new System.Windows.Forms.Button();
             this.createNewTeamLink = new System.Windows.Forms.LinkLabel();
@@ -125,15 +125,15 @@
             this.competitionPlayersLabel.TabIndex = 36;
             this.competitionPlayersLabel.Text = "Teams | Players";
             // 
-            // competitionPlayersListBox
+            // competitionTeamsListBox
             // 
-            this.competitionPlayersListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.competitionPlayersListBox.FormattingEnabled = true;
-            this.competitionPlayersListBox.ItemHeight = 25;
-            this.competitionPlayersListBox.Location = new System.Drawing.Point(428, 134);
-            this.competitionPlayersListBox.Name = "competitionPlayersListBox";
-            this.competitionPlayersListBox.Size = new System.Drawing.Size(272, 127);
-            this.competitionPlayersListBox.TabIndex = 35;
+            this.competitionTeamsListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.competitionTeamsListBox.FormattingEnabled = true;
+            this.competitionTeamsListBox.ItemHeight = 25;
+            this.competitionTeamsListBox.Location = new System.Drawing.Point(428, 134);
+            this.competitionTeamsListBox.Name = "competitionTeamsListBox";
+            this.competitionTeamsListBox.Size = new System.Drawing.Size(272, 127);
+            this.competitionTeamsListBox.TabIndex = 35;
             // 
             // createPrizeButton
             // 
@@ -254,7 +254,7 @@
             this.Controls.Add(this.prizesListBox);
             this.Controls.Add(this.deleteSelectedPlayerButton);
             this.Controls.Add(this.competitionPlayersLabel);
-            this.Controls.Add(this.competitionPlayersListBox);
+            this.Controls.Add(this.competitionTeamsListBox);
             this.Controls.Add(this.createPrizeButton);
             this.Controls.Add(this.addTeamButton);
             this.Controls.Add(this.createNewTeamLink);
@@ -283,7 +283,7 @@
         private ListBox prizesListBox;
         private Button deleteSelectedPlayerButton;
         private Label competitionPlayersLabel;
-        private ListBox competitionPlayersListBox;
+        private ListBox competitionTeamsListBox;
         private Button createPrizeButton;
         private Button addTeamButton;
         private LinkLabel createNewTeamLink;
