@@ -69,13 +69,35 @@ namespace CompetitionUI
             CreateTeamForm frm = new CreateTeamForm(this);
             frm.Show();
         }
+        private void removeSelectedPlayerButton_Click(object sender, EventArgs e)
+        {
+            Team t = (Team)competitionTeamsListBox.SelectedItem;
+
+            if (t != null)
+            {
+                selectedTeams.Remove(t);
+                availableTeams.Add(t);
+                WireUpLists();
+            }
+        }
+        private void removeSelectedPrizeButton_Click(object sender, EventArgs e)
+        {
+            Prize p = (Prize)competitionTeamsListBox.SelectedItem;
+
+            if(p != null)
+            {
+                selectedPrizes.Remove(p);
+                WireUpLists();
+
+            }
+
+        }
 
         private void createCompetitionButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        
     }
 
 }
