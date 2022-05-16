@@ -44,5 +44,21 @@ namespace CompetitionUI
                 WireUpLists();
             }
         }
+
+        private void createPrizeButton_Click(object sender, EventArgs e)
+        {
+            // Call the CreatePrizeForm() class when the button is pressed
+            CreatePrizeForm frm = new CreatePrizeForm();
+            frm.Show();
+
+
+        }
+
+
+        private void createCompetitionButton_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
+        
 }

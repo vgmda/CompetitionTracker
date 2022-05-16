@@ -62,6 +62,7 @@
             this.createCompetitionButton.TabIndex = 41;
             this.createCompetitionButton.Text = "Create Competition";
             this.createCompetitionButton.UseVisualStyleBackColor = true;
+            this.createCompetitionButton.Click += new System.EventHandler(this.createCompetitionButton_Click);
             // 
             // deleteSelectedPrizeButton
             // 
@@ -149,6 +150,7 @@
             this.createPrizeButton.TabIndex = 34;
             this.createPrizeButton.Text = "Create Prize";
             this.createPrizeButton.UseVisualStyleBackColor = true;
+            this.createPrizeButton.Click += new System.EventHandler(this.createPrizeButton_Click);
             // 
             // addTeamButton
             // 
