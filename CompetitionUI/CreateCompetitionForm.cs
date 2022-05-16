@@ -3,7 +3,7 @@ using CompetitionLibrary.Models;
 
 namespace CompetitionUI
 {
-    public partial class CreateCompetitionForm : Form
+    public partial class CreateCompetitionForm : Form, IPrizeRequester
     {
         List<Team> availableTeams = GlobalConfig.Connection.GetTeam_All();
         List<Team> selectedTeams = new List<Team>();
@@ -48,20 +48,23 @@ namespace CompetitionUI
         private void createPrizeButton_Click(object sender, EventArgs e)
         {
             // Call the CreatePrizeForm() class when the button is pressed
-            CreatePrizeForm frm = new CreatePrizeForm();
+            CreatePrizeForm frm = new CreatePrizeForm(this);
             frm.Show();
-
-
-
-
-
         }
+
+        public void PrizeComplete(Prize model)
+        {
+            selectedPrizes.Add(model);
+            WireUpLists();
+        }
+
 
 
         private void createCompetitionButton_Click(object sender, EventArgs e)
         {
-            
+
         }
+
     }
-        
+
 }

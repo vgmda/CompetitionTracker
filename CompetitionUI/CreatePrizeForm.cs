@@ -27,10 +27,14 @@ namespace CompetitionUI
 
                 callingForm.PrizeComplete(model);
 
-                placeNameValue.Text = "";
-                placeNumberValue.Text = "";
-                prizeAmountValue.Text = "0";
-                prizePercentageValue.Text = "0";
+                this.Close();
+
+
+                // Used to clear the form for the next input values
+                // placeNameValue.Text = "";
+                // placeNumberValue.Text = "";
+                // prizeAmountValue.Text = "0";
+                // prizePercentageValue.Text = "0";
 
             }
             else
