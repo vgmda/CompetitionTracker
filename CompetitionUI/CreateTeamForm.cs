@@ -3,14 +3,18 @@ using CompetitionLibrary.Models;
 
 namespace CompetitionUI
 {
-    public partial class CreateTeamForm : Form
+    public partial class CreateTeamForm : Form, ITeamRequester
     {
         private List<Person> availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
         private List<Person> selectedTeamMembers = new List<Person>();
+        
+        private ITeamRequester callingForm;
 
-        public CreateTeamForm()
+        public CreateTeamForm(ITeamRequester caller)
         {
             InitializeComponent();
+
+            callingForm = caller;
 
             // CreateSampleData();
 
@@ -34,15 +38,23 @@ namespace CompetitionUI
         /// </summary
         private void WireUpLists()
         {
+            
+
             selectTeamMemberDropDown.DataSource = null;
 
             selectTeamMemberDropDown.DataSource = availableTeamMembers;
             selectTeamMemberDropDown.DisplayMember = "FullName";
 
+
             teamMembersListBox.DataSource = null;
 
             teamMembersListBox.DataSource = selectedTeamMembers;
             teamMembersListBox.DisplayMember = "FullName";
+
+            if (selectTeamMemberDropDown.SelectedItem == null)
+            {
+                // Do nothing
+            }
 
         }
 
@@ -107,8 +119,14 @@ namespace CompetitionUI
         {
             Person p = (Person)selectTeamMemberDropDown.SelectedItem;
 
+            if (selectTeamMemberDropDown.SelectedItem == null)
+            {
+                MessageBox.Show("Please choose a name");
+            }
+
             if (p != null)
             {
+                
                 availableTeamMembers.Remove(p);
                 selectedTeamMembers.Add(p);
 
@@ -137,9 +155,15 @@ namespace CompetitionUI
             t.TeamName = teamNameValue.Text;
             t.TeamMembers = selectedTeamMembers;
 
-            t = GlobalConfig.Connection.CreateTeam(t);
+            GlobalConfig.Connection.CreateTeam(t);
 
+            //callingForm.TeamComplete(t);
+            //this.Close();
+        }
 
+        public void TeamComplete(Team model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

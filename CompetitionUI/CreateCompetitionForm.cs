@@ -3,7 +3,7 @@ using CompetitionLibrary.Models;
 
 namespace CompetitionUI
 {
-    public partial class CreateCompetitionForm : Form, IPrizeRequester
+    public partial class CreateCompetitionForm : Form, IPrizeRequester, ITeamRequester
     {
         List<Team> availableTeams = GlobalConfig.Connection.GetTeam_All();
         List<Team> selectedTeams = new List<Team>();
@@ -58,13 +58,24 @@ namespace CompetitionUI
             WireUpLists();
         }
 
+        public void TeamComplete(Team model)
+        {
+            selectedTeams.Add(model);
+            WireUpLists();
+        }
 
+        private void createNewTeamLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateTeamForm frm = new CreateTeamForm(this);
+            frm.Show();
+        }
 
         private void createCompetitionButton_Click(object sender, EventArgs e)
         {
 
         }
 
+        
     }
 
 }
