@@ -5,9 +5,11 @@ namespace CompetitionUI
 {
     public partial class CreatePrizeForm : Form
     {
-        public CreatePrizeForm()
+        IPrizeRequester callingForm;
+        public CreatePrizeForm(IPrizeRequester caller)
         {
             InitializeComponent();
+            callingForm = caller;
         }
 
         private void createPrizeButton_Click(object sender, EventArgs e)
@@ -22,6 +24,8 @@ namespace CompetitionUI
 
                 // Initialize data connection
                 GlobalConfig.Connection.CreatePrize(model);
+
+                callingForm.PrizeComplete(model);
 
                 placeNameValue.Text = "";
                 placeNumberValue.Text = "";
