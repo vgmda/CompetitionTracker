@@ -81,10 +81,9 @@ namespace CompetitionLibrary.DataAccess
 
 
         }
-
         public List<Team> GetTeam_All()
         {
-            throw new NotImplementedException();
+            return TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
         }
     }
 }
