@@ -9,7 +9,7 @@ namespace CompetitionLibrary.DataAccess
         private const string PrizesFile = "Prize.csv";
         private const string PeopleFile = "Person.csv";
         private const string TeamFile = "Team.csv";
-        private const string CompetitionFile = "CompetitionModels.csv";
+        private const string CompetitionFile = "Competition.csv";
 
         public Person CreatePerson(Person model)
         {
@@ -89,7 +89,10 @@ namespace CompetitionLibrary.DataAccess
 
         public Competition CreateCompetition(Competition model)
         {
-            List<Competition> competitions = CompetitionFile.FullFilePath().LoadFile().ConvertToCompetitionModels();
+            List<Competition> competitions = CompetitionFile
+                .FullFilePath()
+                .LoadFile()
+                .ConvertToCompetition(TeamFile, PeopleFile, PrizesFile);
         }
     }
 }
