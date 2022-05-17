@@ -95,6 +95,21 @@ namespace CompetitionUI
 
         private void createCompetitionButton_Click(object sender, EventArgs e)
         {
+            // Validate data
+            decimal fee = 0;
+            bool feeAcceptable = decimal.TryParse(entryFeeValue.Text, out fee);
+
+
+            // Create Competition model
+            Competition comp = new Competition();
+
+            comp.CompetitionName = competitionNameValue.Text;
+            comp.EntryFee = 0;
+            // Create Competition entry
+            // Create all of the prizes entries
+            // Create all of the team entries
+
+            // TODO - Create <Matchup>
 
         }
 

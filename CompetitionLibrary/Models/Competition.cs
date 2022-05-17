@@ -2,7 +2,7 @@
 {
     public class Competition
     {
-        public string TournamentName { get; set; }
+        public string CompetitionName { get; set; }
 
         public decimal EntryFee { get; set; }
 
