@@ -96,7 +96,17 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         public static List<Competition> ConvertToCompetitionModels(this List<string> lines)
         {
+            // id,CompetitionName,EntryFee,(id|id|id - Entered Teams),(id|id|id - Prizes),(Rounds - id^id^id|id^id^id|id^id^id)
+            List<Competition> output = new List<Competition>();
+            foreach(string line in lines)
+            {
+                string[] cols = line.Split(',');
+                Competition comp = new Competition();
+                comp.Id = int.Parse(cols[0]);
+                comp.CompetitionName = cols[1];
+                comp.EntryFee = int.Parse(cols[2]);
 
+            }
         }
 
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
