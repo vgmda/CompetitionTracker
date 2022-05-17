@@ -94,6 +94,11 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         }
 
+        public static List<Competition> ConvertToCompetitionModels(this List<string> lines)
+        {
+
+        }
+
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
         {
             List<string> lines = new List<string>();

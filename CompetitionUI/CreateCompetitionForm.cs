@@ -116,14 +116,16 @@ namespace CompetitionUI
             comp.Prizes = selectedPrizes;
             comp.EnteredTeams = selectedTeams;
 
+            // TODO - Create <Matchup>
+
+
+
+
+
             // Create Competition entry
             // Create all of the prizes entries
             // Create all of the team entries
             GlobalConfig.Connection.CreateCompetition(comp);
-
-            // TODO - Create <Matchup>
-
-
 
         }
 
