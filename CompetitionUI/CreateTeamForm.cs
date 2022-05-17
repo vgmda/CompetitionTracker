@@ -7,7 +7,7 @@ namespace CompetitionUI
     {
         private List<Person> availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
         private List<Person> selectedTeamMembers = new List<Person>();
-        
+
         private ITeamRequester callingForm;
 
         public CreateTeamForm(ITeamRequester caller)
@@ -122,7 +122,7 @@ namespace CompetitionUI
 
             if (p != null)
             {
-                
+
                 availableTeamMembers.Remove(p);
                 selectedTeamMembers.Add(p);
 

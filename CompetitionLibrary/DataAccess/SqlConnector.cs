@@ -87,28 +87,9 @@ namespace CompetitionLibrary.DataAccess
             {
                 SaveCompetition(connection, model);
 
-                // dbo.spCompetitionPrizes_Insert
-                foreach (Prize pz in model.Prizes)
-                {
-                    var p = new DynamicParameters();
-                    p.Add("@CompetitionId", model.Id);
-                    p.Add("@PrizeId", pz.Id);
-                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+                SaveCompetitionPrizes(connection, model);
 
-                    connection.Execute("dbo.spCompetitionPrizes_Insert", p, commandType: CommandType.StoredProcedure);
-                }
-
-                // dbo.spCompetitionEntries_Insert
-                foreach (Team tm in model.EnteredTeams)
-                {
-                    var p = new DynamicParameters();
-                    p.Add("@CompetitionId", model.Id);
-                    p.Add("@TeamId", tm.Id);
-                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-
-                    connection.Execute("dbo.spCompetitionEntries_Insert", p, commandType: CommandType.StoredProcedure);
-
-                }
+                SaveCompetitionEntries(connection, model);
 
                 return model;
             }
@@ -125,6 +106,35 @@ namespace CompetitionLibrary.DataAccess
             connection.Execute("dbo.spCompetitions_Insert", p, commandType: CommandType.StoredProcedure);
 
             model.Id = p.Get<int>("@id");
+        }
+
+        private void SaveCompetitionPrizes(IDbConnection connection, Competition model)
+        {
+            // dbo.spCompetitionPrizes_Insert
+            foreach (Prize pz in model.Prizes)
+            {
+                var p = new DynamicParameters();
+                p.Add("@CompetitionId", model.Id);
+                p.Add("@PrizeId", pz.Id);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spCompetitionPrizes_Insert", p, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        private void SaveCompetitionEntries(IDbConnection connection, Competition model)
+        {
+            // dbo.spCompetitionEntries_Insert
+            foreach (Team tm in model.EnteredTeams)
+            {
+                var p = new DynamicParameters();
+                p.Add("@CompetitionId", model.Id);
+                p.Add("@TeamId", tm.Id);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spCompetitionEntries_Insert", p, commandType: CommandType.StoredProcedure);
+
+            }
         }
 
 

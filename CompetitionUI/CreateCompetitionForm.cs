@@ -84,7 +84,7 @@ namespace CompetitionUI
         {
             Prize p = (Prize)competitionTeamsListBox.SelectedItem;
 
-            if(p != null)
+            if (p != null)
             {
                 selectedPrizes.Remove(p);
                 WireUpLists();
@@ -119,8 +119,11 @@ namespace CompetitionUI
             // Create Competition entry
             // Create all of the prizes entries
             // Create all of the team entries
+            GlobalConfig.Connection.CreateCompetition(comp);
 
             // TODO - Create <Matchup>
+
+
 
         }
 
