@@ -2,6 +2,11 @@
 {
     public class Competition
     {
+        /// <summary>
+        /// The unique identifier for the competition
+        /// </summary>
+        public int Id { get; set; }
+
         public string CompetitionName { get; set; }
 
         public decimal EntryFee { get; set; }

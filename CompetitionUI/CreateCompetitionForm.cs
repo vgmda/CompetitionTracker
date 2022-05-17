@@ -99,12 +99,23 @@ namespace CompetitionUI
             decimal fee = 0;
             bool feeAcceptable = decimal.TryParse(entryFeeValue.Text, out fee);
 
+            if (!feeAcceptable)
+            {
+                MessageBox.Show("You need to enter a valid Entry Fee.",
+                    "Invalid Fee",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
 
             // Create Competition model
             Competition comp = new Competition();
 
             comp.CompetitionName = competitionNameValue.Text;
-            comp.EntryFee = 0;
+            comp.EntryFee = fee;
+            comp.Prizes = selectedPrizes;
+            comp.EnteredTeams = selectedTeams;
+
             // Create Competition entry
             // Create all of the prizes entries
             // Create all of the team entries
