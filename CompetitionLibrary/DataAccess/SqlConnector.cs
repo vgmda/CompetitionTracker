@@ -9,6 +9,7 @@ namespace CompetitionLibrary.DataAccess
     {
         private const string db = "Competitions";
 
+
         public Person CreatePerson(Person model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
@@ -79,6 +80,50 @@ namespace CompetitionLibrary.DataAccess
             }
 
         }
+
+        public Competition CreateCompetition(Competition model)
+        {
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                // dbo.spCompetitions_Insert
+                var p = new DynamicParameters();
+                p.Add("@CompetitionName", model.CompetitionName);
+                p.Add("@EntryFee", model.EntryFee);
+                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                connection.Execute("dbo.spCompetitions_Insert", p, commandType: CommandType.StoredProcedure);
+
+                model.Id = p.Get<int>("@id");
+
+
+                // dbo.spCompetitionPrizes_Insert
+                foreach (Prize pz in model.Prizes)
+                {
+                    p = new DynamicParameters();
+                    p.Add("@CompetitionId", model.Id);
+                    p.Add("@PrizeId", pz.Id);
+                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    connection.Execute("dbo.spCompetitionPrizes_Insert", p, commandType: CommandType.StoredProcedure);
+                }
+
+                // dbo.spCompetitionEntries_Insert
+                foreach (Team tm in model.EnteredTeams)
+                {
+                    p = new DynamicParameters();
+                    p.Add("@CompetitionId", model.Id);
+                    p.Add("@TeamId", tm.Id);
+                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    connection.Execute("dbo.spCompetitionEntries_Insert", p, commandType: CommandType.StoredProcedure);
+
+                }
+
+                return model;
+            }
+        }
+
+
 
         public List<Person> GetPerson_All()
         {

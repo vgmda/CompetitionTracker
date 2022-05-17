@@ -85,5 +85,10 @@ namespace CompetitionLibrary.DataAccess
         {
             return TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
         }
+
+        public Competition CreateCompetition(Competition model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
