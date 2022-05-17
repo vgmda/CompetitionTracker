@@ -85,21 +85,12 @@ namespace CompetitionLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
-                // dbo.spCompetitions_Insert
-                var p = new DynamicParameters();
-                p.Add("@CompetitionName", model.CompetitionName);
-                p.Add("@EntryFee", model.EntryFee);
-                p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-
-                connection.Execute("dbo.spCompetitions_Insert", p, commandType: CommandType.StoredProcedure);
-
-                model.Id = p.Get<int>("@id");
-
+                SaveCompetition(connection, model);
 
                 // dbo.spCompetitionPrizes_Insert
                 foreach (Prize pz in model.Prizes)
                 {
-                    p = new DynamicParameters();
+                    var p = new DynamicParameters();
                     p.Add("@CompetitionId", model.Id);
                     p.Add("@PrizeId", pz.Id);
                     p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
@@ -110,7 +101,7 @@ namespace CompetitionLibrary.DataAccess
                 // dbo.spCompetitionEntries_Insert
                 foreach (Team tm in model.EnteredTeams)
                 {
-                    p = new DynamicParameters();
+                    var p = new DynamicParameters();
                     p.Add("@CompetitionId", model.Id);
                     p.Add("@TeamId", tm.Id);
                     p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
@@ -121,6 +112,19 @@ namespace CompetitionLibrary.DataAccess
 
                 return model;
             }
+        }
+
+        private void SaveCompetition(IDbConnection connection, Competition model)
+        {
+            // dbo.spCompetitions_Insert
+            var p = new DynamicParameters();
+            p.Add("@CompetitionName", model.CompetitionName);
+            p.Add("@EntryFee", model.EntryFee);
+            p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            connection.Execute("dbo.spCompetitions_Insert", p, commandType: CommandType.StoredProcedure);
+
+            model.Id = p.Get<int>("@id");
         }
 
 
