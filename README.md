@@ -39,6 +39,6 @@ C/D(C/D)----Winner(Winner);
 > 
 > **Users:** One client layer at the time
 
-**Key Concepts:**
+### _Key Concepts:_
 
 <table><tbody><tr><td>Email</td><td>Interfaces</td></tr><tr><td>SQL</td><td>Random Ordering</td></tr><tr><td>Custom Events</td><td>Texting</td></tr><tr><td>Error Handling</td><td>User Testing</td></tr></tbody></table>
