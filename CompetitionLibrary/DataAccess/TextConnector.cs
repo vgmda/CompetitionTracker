@@ -93,6 +93,17 @@ namespace CompetitionLibrary.DataAccess
                 .FullFilePath()
                 .LoadFile()
                 .ConvertToCompetition(TeamFile, PeopleFile, PrizesFile);
+
+            int currentId = 1;
+
+            if (competitions.Count > 0)
+            {
+                currentId = competitions.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+            competitions.Add(model);
+            competitions.SaveToCompetitionFile();
         }
     }
 }

@@ -133,9 +133,12 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
                 foreach (string id in prizeIds)
                 {
-
+                    comp.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
                 }
 
+                // TODO - Capture Rounds information
+
+                output.Add(comp);
             }
 
 
@@ -176,6 +179,11 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        public static void SaveToCompetitionFile(this List<Competition> models, string fileName)
+        {
+
         }
 
         private static string ConvertPeopleListToString(List<Person> people)
