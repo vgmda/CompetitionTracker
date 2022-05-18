@@ -81,7 +81,7 @@ namespace CompetitionLibrary.DataAccess
 
         }
 
-        public Competition CreateCompetition(Competition model)
+        public void CreateCompetition(Competition model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -91,7 +91,6 @@ namespace CompetitionLibrary.DataAccess
 
                 SaveCompetitionEntries(connection, model);
 
-                return model;
             }
         }
 

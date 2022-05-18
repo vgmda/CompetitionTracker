@@ -8,7 +8,7 @@ namespace CompetitionLibrary.DataAccess
         Prize CreatePrize(Prize model);
         Person CreatePerson(Person model);
         Team CreateTeam(Team model);
-        Competition CreateCompetition(Competition model);
+        void CreateCompetition(Competition model);
         List<Person> GetPerson_All();
         List<Team> GetTeam_All();
     }

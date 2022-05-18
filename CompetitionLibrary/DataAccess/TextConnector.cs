@@ -87,7 +87,7 @@ namespace CompetitionLibrary.DataAccess
             return TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
         }
 
-        public Competition CreateCompetition(Competition model)
+        public void CreateCompetition(Competition model)
         {
             List<Competition> competitions = CompetitionFile
                 .FullFilePath()
@@ -103,7 +103,7 @@ namespace CompetitionLibrary.DataAccess
 
             model.Id = currentId;
             competitions.Add(model);
-            competitions.SaveToCompetitionFile();
+            competitions.SaveToCompetitionFile(CompetitionFile);
         }
     }
 }

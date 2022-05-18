@@ -144,6 +144,10 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
+
+
+
+
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -154,6 +158,8 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
+
+
 
 
         public static void SaveToPeopleFile(this List<Person> models, string fileName)
@@ -167,6 +173,9 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
+
+
+
         public static void SaveToTeamFile(this List<Team> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -179,6 +188,9 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
+
+
+
         public static void SaveToCompetitionFile(this List<Competition> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -189,10 +201,56 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     { comp.CompetitionName },
                     { comp.EntryFee },
                     { ConvertTeamListToString(comp.EnteredTeams) },
-                    { ConvertPrizeListToString(comp.Prizes) }");
+                    { ConvertPrizeListToString(comp.Prizes) },
+                    { ConvertRoundListToString(comp.Rounds) }");
             }
 
+            File.WriteAllLines(fileName.FullFilePath(), lines);
+
         }
+
+
+        private static string ConvertRoundListToString(List<List<Matchup>> rounds)
+        {
+            // (Rounds - id^id^id|id^id^id|id^id^id)
+            string output = "";
+
+            if (rounds.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (List<Matchup> r in rounds)
+            {
+                output += $"{ ConvertMatchupListToString(r) }|";
+            }
+
+            // Removing the trailing pipe character
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
+
+        private static string ConvertMatchupListToString(List<Matchup> matchups)
+        {
+            string output = "";
+
+            if (matchups.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Matchup m in matchups)
+            {
+                output += $"{ m.Id }^";
+            }
+
+            // Removing the trailing pipe character
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
+
 
         private static string ConvertPrizeListToString(List<Prize> prizes)
         {
@@ -235,6 +293,9 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             return output;
         }
+
+
+
 
         private static string ConvertPeopleListToString(List<Person> people)
         {
