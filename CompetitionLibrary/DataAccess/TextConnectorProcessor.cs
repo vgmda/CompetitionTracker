@@ -94,7 +94,11 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         }
 
-        public static List<Competition> ConvertToCompetition(this List<string> lines, string teamFileName, string peopleFileName)
+        public static List<Competition> ConvertToCompetition(
+            this List<string> lines, 
+            string teamFileName, 
+            string peopleFileName,
+            string prizeFileName)
         {
             // id = cols[0]
             // CompetitionName = cols[1]
@@ -105,9 +109,10 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             // id,CompetitionName,EntryFee,(id|id|id - Entered Teams),(id|id|id - Prizes),(Rounds - id^id^id|id^id^id|id^id^id)
             List<Competition> output = new List<Competition>();
             List<Team> teams = teamFileName.FullFilePath().LoadFile().ConvertToTeam(peopleFileName);
+            List<Prize> prizes = prizeFileName.FullFilePath().LoadFile().ConvertToPrize();
 
 
-            foreach(string line in lines)
+            foreach (string line in lines)
             {
                 string[] cols = line.Split(',');
                 Competition comp = new Competition();
@@ -124,7 +129,13 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     comp.EnteredTeams.Add(teams.Where(x => x.Id == int.Parse(id)).First());
                 }
 
-                // TODO - Prizes
+                string[] prizeIds = cols[4].Split('|');
+
+                foreach (string id in prizeIds)
+                {
+
+                }
+
             }
 
 
