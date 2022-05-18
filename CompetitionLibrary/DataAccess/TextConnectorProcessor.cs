@@ -95,8 +95,8 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
         }
 
         public static List<Competition> ConvertToCompetition(
-            this List<string> lines, 
-            string teamFileName, 
+            this List<string> lines,
+            string teamFileName,
             string peopleFileName,
             string prizeFileName)
         {
@@ -141,9 +141,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 output.Add(comp);
             }
 
-
             return output;
-
         }
 
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
@@ -183,7 +181,59 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         public static void SaveToCompetitionFile(this List<Competition> models, string fileName)
         {
+            List<string> lines = new List<string>();
 
+            foreach (Competition comp in models)
+            {
+                lines.Add($@"{ comp.Id },
+                    { comp.CompetitionName },
+                    { comp.EntryFee },
+                    { ConvertTeamListToString(comp.EnteredTeams) },
+                    { ConvertPrizeListToString(comp.Prizes) }");
+            }
+
+        }
+
+        private static string ConvertPrizeListToString(List<Prize> prizes)
+        {
+            string output = "";
+
+            if (prizes.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Prize p in prizes)
+            {
+                output += $"{ p.Id }|";
+            }
+
+            // Removing the trailing pipe character
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
+
+
+
+        private static string ConvertTeamListToString(List<Team> teams)
+        {
+            string output = "";
+
+            if (teams.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (Team t in teams)
+            {
+                output += $"{ t.Id }|";
+            }
+
+            // Removing the trailing pipe character
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
         }
 
         private static string ConvertPeopleListToString(List<Person> people)
