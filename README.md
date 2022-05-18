@@ -2,9 +2,7 @@
 
 ### _Description:_
 
-Design and deploy a C# windows based application which generates a single-elimination style matchup.
-
-The idea is to create an app to track a competition's progress, each competition consists of teams and prizes. Each team consists of 1 or more people depending on the type of sport. The app will allow us to match up those people into rounds and choose the winner.  
+Design and deploy a C# windows based application which generates a single-elimination style matchup. The idea is to create an app to track a competition's progress, each competition consists of teams and prizes. Each team consists of 1 or more people depending on the type of sport. The app will allow us to match up those people into rounds and choose the winner. The data for each model (competition, people, teams, matchups etc) is stored in the database and text files.
 
 ```mermaid
 graph LR;
