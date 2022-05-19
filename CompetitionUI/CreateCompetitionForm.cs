@@ -116,15 +116,8 @@ namespace CompetitionUI
             comp.Prizes = selectedPrizes;
             comp.EnteredTeams = selectedTeams;
 
-            // TODO - Create <Matchup>
-            // Order the list randomly
-            // Check if it is big enough - if not, add in byes - 2(teams)*2(teams)*2(teams)*2(teams) = 2^4
-            // Create first round of matchups
-            // Create every round after that
-
-
-
-
+            // Wire up the matchups
+            CompetitionLogic.CreateRounds(comp);
 
             // Create Competition entry
             // Create all of the prizes entries
