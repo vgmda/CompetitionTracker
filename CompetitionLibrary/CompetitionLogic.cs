@@ -18,18 +18,32 @@ namespace CompetitionLibrary
         {
             List<Team> randomizedTeams = RandomizeTeamOrder(model.EnteredTeams);
             int rounds = FindNumberOfRounds(randomizedTeams.Count);
+            int byes = 0;
         }
 
-        private static int (int teamCount)
+        private static int NumberOfByes(int roudns, int numberOfTeams)
+        {
+
+        }
+
+        private static int FindNumberOfRounds(int teamCount)
         {
             int output = 1;
-            // 
+            // val = valuation
             int val = 2;
 
-            while (true)
+            // Check if team count is bigger than val count
+            // If teamCount is 2
+            // Then this will never execute and will return 1 round
+            while (val < teamCount)
             {
+                output += 1;
+                val *= 2;
 
             }
+
+            // Return 1 round
+            return output;
 
         }
 
