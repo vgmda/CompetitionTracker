@@ -14,6 +14,41 @@ namespace CompetitionLibrary
             List<Team> randomizedTeams = RandomizeTeamOrder(model.EnteredTeams);
             int rounds = FindNumberOfRounds(randomizedTeams.Count);
             int byes = NumberOfByes(rounds, randomizedTeams.Count);
+
+            model.Rounds.Add(CreateFirstRound(byes, randomizedTeams));
+
+            CreateOtherRounds(model, rounds);
+        }
+
+        private static void CreateOtherRounds(Competition model, int rounds)
+        {
+            int round = 2;
+            List<Matchup> previousRound = model.Rounds[0];
+            List<Matchup> currentRound = new List<Matchup>();
+            Matchup currentMatchup = new Matchup();
+
+            // round = current round
+            // rounds = total number of rounds
+            while(round <= rounds)
+            {
+                foreach (Matchup match in previousRound)
+                {
+                    currentMatchup.Entries.Add(new MatchupEntry { ParentMatchup = match });
+
+                    if (currentMatchup.Entries.Count > 1)
+                    {
+                        currentMatchup.MatchupRound = round;
+                        currentRound.Add(currentMatchup);
+                        currentMatchup = new Matchup();
+                    }
+                }
+
+                model.Rounds.Add(currentRound);
+                previousRound = currentRound;
+                currentRound = new List<Matchup>();
+                round += 1;
+
+            }
         }
 
         private static List<Matchup> CreateFirstRound(int byes, List<Team> teams)
