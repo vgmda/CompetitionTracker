@@ -1,5 +1,8 @@
 ﻿namespace CompetitionLibrary.Models
 {
+    /// <summary>
+    /// Represents one team in a matchup
+    /// </summary>
     public class MatchupEntry
     {
         /// <summary>
@@ -17,9 +20,6 @@
         /// from as the winner.
         /// </summary>
         public Matchup ParentMatchup { get; set; }
-
-
-
     }
 }
 

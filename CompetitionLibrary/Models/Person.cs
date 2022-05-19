@@ -25,7 +25,9 @@
         /// The primary mobile phone number of the person
         /// </summary>
         public string MobileNumber { get; set; }
-
+        /// <summary>
+        /// Returns a person's frist name + last name
+        /// </summary>
         public string FullName
         {
             get

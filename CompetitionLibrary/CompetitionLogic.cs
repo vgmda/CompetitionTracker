@@ -1,9 +1,4 @@
 ﻿using CompetitionLibrary.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CompetitionLibrary
 {
@@ -18,11 +13,53 @@ namespace CompetitionLibrary
         {
             List<Team> randomizedTeams = RandomizeTeamOrder(model.EnteredTeams);
             int rounds = FindNumberOfRounds(randomizedTeams.Count);
-            int byes = 0;
+            int byes = NumberOfByes(rounds, randomizedTeams.Count);
         }
 
-        private static int NumberOfByes(int roudns, int numberOfTeams)
+        private static List<Matchup> CreateFirstRound(int byes, List<Team> teams)
         {
+            List<Matchup> output = new List<Matchup>();
+            Matchup current = new Matchup();
+
+            foreach (Team team in teams)
+            {
+                current.Entries.Add(new MatchupEntry { TeamCompeting = team });
+
+                // If there is a bye available
+                if (byes > 0 || current.Entries.Count > 1)
+                {
+                    // Always 1 as this is the first round
+                    current.MatchupRound = 1;
+                    output.Add(current);
+                    current = new Matchup();
+
+                    if (byes > 0)
+                    {
+                        byes -= 1;
+                    }
+                }
+            }
+
+            return output;
+
+        }
+
+
+        private static int NumberOfByes(int rounds, int numberOfTeams)
+        {
+            int output = 0;
+            int totalTeams = 1;
+
+            // 1 based counting system
+            // Counting rounds starting at 1
+            for (int i = 1; i <= rounds; i++)
+            {
+                totalTeams *= 2;
+            }
+
+            output = totalTeams - numberOfTeams;
+
+            return output;
 
         }
 
