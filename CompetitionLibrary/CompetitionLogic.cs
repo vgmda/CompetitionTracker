@@ -17,6 +17,20 @@ namespace CompetitionLibrary
         public static void CreateRounds(Competition model)
         {
             List<Team> randomizedTeams = RandomizeTeamOrder(model.EnteredTeams);
+            int rounds = FindNumberOfRounds(randomizedTeams.Count);
+        }
+
+        private static int (int teamCount)
+        {
+            int output = 1;
+            // 
+            int val = 2;
+
+            while (true)
+            {
+
+            }
+
         }
 
         private static List<Team> RandomizeTeamOrder(List<Team> teams)
