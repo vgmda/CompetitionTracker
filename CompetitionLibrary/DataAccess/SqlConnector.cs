@@ -91,6 +91,8 @@ namespace CompetitionLibrary.DataAccess
 
                 SaveCompetitionEntries(connection, model);
 
+                SaveCompetitionRounds(connection, model);
+
             }
         }
 
@@ -136,6 +138,11 @@ namespace CompetitionLibrary.DataAccess
             }
         }
 
+        private void SaveCompetitionRounds(IDbConnection connection, Competition model)
+        {
+
+        }
+            
 
 
         public List<Person> GetPerson_All()
