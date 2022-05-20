@@ -143,6 +143,33 @@ namespace CompetitionLibrary.DataAccess
             // List<List<Matchup>> Rounds
             // List<MatchupEntry> Entries
 
+            // Loop through the rounds
+            // Loop through the matchups
+            // Save the matchup
+            // Loop through the entries and save them
+
+            // The best code is the code which is simplistic enough for even the newer developer to understand..
+            // ..and yet powerful enough to get the job done.
+            // var can be used instead of List<Matchup>
+            foreach (List<Matchup> round in model.Rounds)
+            {
+                foreach (Matchup matchup in round)
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@CompetitionId", model.Id);
+                    p.Add("@MatchupRound", matchup.MatchupRound);
+                    p.Add("@id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                    connection.Execute("dbo.spMatchups_Insert", p, commandType: CommandType.StoredProcedure);
+
+                    matchup.Id = p.Get<int>("@id");
+
+                    foreach(MatchupEntry entry in matchup.Entries)
+                    {
+
+                    }
+                }
+            }
 
         }
             
