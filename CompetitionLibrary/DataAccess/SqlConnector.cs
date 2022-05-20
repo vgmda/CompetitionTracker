@@ -140,6 +140,9 @@ namespace CompetitionLibrary.DataAccess
 
         private void SaveCompetitionRounds(IDbConnection connection, Competition model)
         {
+            // List<List<Matchup>> Rounds
+            // List<MatchupEntry> Entries
+
 
         }
             
