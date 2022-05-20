@@ -29,7 +29,7 @@ namespace CompetitionLibrary
 
             // round = current round
             // rounds = total number of rounds
-            while(round <= rounds)
+            while (round <= rounds)
             {
                 foreach (Matchup match in previousRound)
                 {
