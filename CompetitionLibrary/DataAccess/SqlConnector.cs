@@ -180,7 +180,7 @@ namespace CompetitionLibrary.DataAccess
                         }
                         if(entry.TeamCompeting == null)
                         {
-                            p.Add("@TeamCompetingId", entry.TeamCompeting.Id);
+                            p.Add("@TeamCompetingId", null);
                         }
                         else
                         {
