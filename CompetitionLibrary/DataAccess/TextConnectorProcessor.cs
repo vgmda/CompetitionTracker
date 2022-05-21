@@ -383,7 +383,16 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         public static void SaveMatchupToFile(this Matchup matchup, string matchupFile, string matchupEntryFile)
         {
+            List<Matchup> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile().ConvertToMatchup();
 
+            int currentId = 1;
+
+            if (matchups.Count > 0)
+            {
+                currentId = matchups.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            matchup.Id = currentId;
 
             foreach (MatchupEntry entry in matchup.Entries)
             {
