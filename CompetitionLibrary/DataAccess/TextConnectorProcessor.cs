@@ -144,6 +144,13 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
+        public static List<Matchup> ConvertToMatchup(this List<string> lines)
+        {
+            List<Matchup> output = new List<Matchup>();
+
+            foreach (string)
+        }
+
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -211,13 +218,24 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     // Get the top Id and add one
                     // Store the Id
                     // Save the matchup record
+                    matchup.SaveMatchupToFile(matchupFile, matchupEntryFile);
 
-
+                    
                 }
             }
         }
 
-        public static void SaveMatchupToFile(this Matchup matchup, string matchupFile)
+        public static void SaveMatchupToFile(this Matchup matchup, string matchupFile, string matchupEntryFile)
+        {
+
+
+            foreach (MatchupEntry entry in matchup.Entries)
+            {
+                entry.SaveEntryToFile(matchupEntryFile);
+            }
+        }
+
+        public static void SaveEntryToFile(this MatchupEntry entry, string matchupEntryFile)
         {
 
         }
