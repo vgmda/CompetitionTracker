@@ -10,6 +10,8 @@ namespace CompetitionLibrary.DataAccess
         private const string PeopleFile = "Person.csv";
         private const string TeamFile = "Team.csv";
         private const string CompetitionFile = "Competition.csv";
+        private const string MatchupFile = "Matchup.csv";
+        private const string MatchupEntryFile = "MatchupEntry.csv";
 
         public Person CreatePerson(Person model)
         {
@@ -102,6 +104,7 @@ namespace CompetitionLibrary.DataAccess
             }
 
             model.Id = currentId;
+            competitions.SaveRoundsToFile(model, MatchupFile, MatchupEntryFile);
             competitions.Add(model);
             competitions.SaveToCompetitionFile(CompetitionFile);
         }
