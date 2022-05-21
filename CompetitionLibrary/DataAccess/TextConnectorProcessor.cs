@@ -144,9 +144,47 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
+        public static List<MatchupEntry> ConvertToMatchupEntry(this List<string> lines)
+        {
+            // id=0,TeamCompeting=1,Score=2,ParentMatchup=3
+            List<MatchupEntry> output = new List<MatchupEntry>();
+
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+                MatchupEntry me = new MatchupEntry();
+                me.Id = int.Parse(cols[0]);
+                me.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
+                me.Score = double.Parse(cols[2]);
+                int parentId = 0;
+                if(int.TryParse(cols[3], out parentId))
+                {
+                    me.ParentMatchup.LookupMatchupById(parentId);
+                }
+                else
+                {
+                    me.ParentMatchup = null;
+                }
+
+                output.Add(me);
+
+            }
+
+            return output;
+        }
+
         private static List<MatchupEntry> ConvertStringToMatchupEntry(string input)
         {
-            throw new NotImplementedException();
+            string[] ids = input.Split('|');
+            List<MatchupEntry> output = new List<MatchupEntry>();
+            List<MatchupEntry> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntry();
+
+            foreach (string id in ids)
+            {
+                output.Add(entries.Where(x => x.Id == int.Parse(id)).First());
+            }
+
+            return output;
         }
 
         private static Team LookupTeamById(int id)
@@ -154,6 +192,13 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             List<Team> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeam(GlobalConfig.PeopleFile);
 
             return teams.Where(x => x.Id == id).First();
+        }
+
+        private static Matchup LookupMatchupById(int id)
+        {
+            List<Matchup> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile().ConvertToMatchup();
+
+            return matchups.Where(x => x.Id == id).First();
         }
 
         public static List<Matchup> ConvertToMatchup(this List<string> lines)
@@ -164,7 +209,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             foreach (string line in lines)
             {
                 string[] cols = line.Split(',');
-                
+
                 Matchup p = new Matchup();
                 p.Id = int.Parse(cols[0]);
                 p.Entries = ConvertStringToMatchupEntry(cols[1]);
@@ -245,7 +290,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     // Save the matchup record
                     matchup.SaveMatchupToFile(matchupFile, matchupEntryFile);
 
-                    
+
                 }
             }
         }
