@@ -144,11 +144,36 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
+        private static List<MatchupEntry> ConvertStringToMatchupEntry(string input)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static Team LookupTeamById(int id)
+        {
+            List<Team> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeam(GlobalConfig.PeopleFile);
+
+            return teams.Where(x => x.Id == id).First();
+        }
+
         public static List<Matchup> ConvertToMatchup(this List<string> lines)
         {
+            // id=0,entries=1(pipe delimite by Id),winner=2,matchupRound=3
             List<Matchup> output = new List<Matchup>();
 
-            foreach (string)
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+                
+                Matchup p = new Matchup();
+                p.Id = int.Parse(cols[0]);
+                p.Entries = ConvertStringToMatchupEntry(cols[1]);
+                p.Winner = LookupTeamById(int.Parse(cols[2]));
+                p.MatchupRound = int.Parse(cols[3]);
+                output.Add(p);
+            }
+
+            return output;
         }
 
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)

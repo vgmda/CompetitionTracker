@@ -5,6 +5,13 @@ namespace CompetitionLibrary
 {
     public static class GlobalConfig
     {
+        public const string PrizesFile = "Prize.csv";
+        public const string PeopleFile = "Person.csv";
+        public const string TeamFile = "Team.csv";
+        public const string CompetitionFile = "Competition.csv";
+        public const string MatchupFile = "Matchup.csv";
+        public const string MatchupEntryFile = "MatchupEntry.csv";
+
         public static IDataConnection Connection { get; private set; }
 
         public static void InitializeConnections(DatabaseType db)
