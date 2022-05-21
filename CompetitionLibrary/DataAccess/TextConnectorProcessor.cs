@@ -144,10 +144,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
-
-
-
-
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -158,9 +154,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
-
-
-
 
         public static void SaveToPeopleFile(this List<Person> models, string fileName)
         {
@@ -173,9 +166,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
 
-
-
-
         public static void SaveToTeamFile(this List<Team> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -187,9 +177,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }
-
-
-
 
         public static void SaveToCompetitionFile(this List<Competition> models, string fileName)
         {
@@ -209,6 +196,10 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         }
 
+        public static void SaveRoundsToFile(this Competition model, string MatchupFile, string MatchupEntryFile)
+        {
+
+        }
 
         private static string ConvertRoundListToString(List<List<Matchup>> rounds)
         {
@@ -251,7 +242,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
-
         private static string ConvertPrizeListToString(List<Prize> prizes)
         {
             string output = "";
@@ -272,8 +262,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
-
-
         private static string ConvertTeamListToString(List<Team> teams)
         {
             string output = "";
@@ -293,9 +281,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             return output;
         }
-
-
-
 
         private static string ConvertPeopleListToString(List<Person> people)
         {

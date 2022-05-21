@@ -178,7 +178,7 @@ namespace CompetitionLibrary.DataAccess
                         {
                             p.Add("@ParentMatchupId", entry.ParentMatchup.Id);
                         }
-                        if(entry.TeamCompeting == null)
+                        if (entry.TeamCompeting == null)
                         {
                             p.Add("@TeamCompetingId", null);
                         }
