@@ -157,9 +157,9 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 me.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
                 me.Score = double.Parse(cols[2]);
                 int parentId = 0;
-                if(int.TryParse(cols[3], out parentId))
+                if (int.TryParse(cols[3], out parentId))
                 {
-                    me.ParentMatchup.LookupMatchupById(parentId);
+                    me.ParentMatchup = LookupMatchupById(parentId);
                 }
                 else
                 {
@@ -167,7 +167,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 }
 
                 output.Add(me);
-
             }
 
             return output;
