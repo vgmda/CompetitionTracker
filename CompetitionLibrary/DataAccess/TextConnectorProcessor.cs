@@ -196,7 +196,28 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         }
 
-        public static void SaveRoundsToFile(this Competition model, string MatchupFile, string MatchupEntryFile)
+        public static void SaveRoundsToFile(this Competition model, string matchupFile, string matchupEntryFile)
+        {
+            // Loop through each Round
+            // Loop through each Matchup
+            // Get the Id for the new matchup and save the record
+            // Loop through each Entry, get the Id and save it
+
+            foreach (List<Matchup> round in model.Rounds)
+            {
+                foreach (Matchup matchup in round)
+                {
+                    // Load all of the matchups from the file
+                    // Get the top Id and add one
+                    // Store the Id
+                    // Save the matchup record
+
+
+                }
+            }
+        }
+
+        public static void SaveMatchupToFile(this Matchup matchup, string matchupFile)
         {
 
         }
