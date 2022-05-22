@@ -110,7 +110,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             List<Competition> output = new List<Competition>();
             List<Team> teams = teamFileName.FullFilePath().LoadFile().ConvertToTeam(peopleFileName);
             List<Prize> prizes = prizeFileName.FullFilePath().LoadFile().ConvertToPrize();
-
+            List<Matchup> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile().ConvertToMatchup();
 
             foreach (string line in lines)
             {
@@ -136,7 +136,21 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     comp.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
                 }
 
-                // TODO - Capture Rounds information
+                // Capture Rounds information
+                string[] rounds = cols[5].Split('|');
+                
+
+                foreach (string round in rounds)
+                {
+                    string[] msText = round.Split('^');
+                    List<Matchup> ms = new List<Matchup>();
+
+                    foreach (string matchupModelTextId in msText)
+                    {
+                        ms.Add(matchups.Where(x => x.Id == int.Parse(matchupModelTextId)).First());
+                    }
+                    comp.Rounds.Add(ms);
+                }
 
                 output.Add(comp);
             }
