@@ -394,8 +394,6 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     // Store the Id
                     // Save the matchup record
                     matchup.SaveMatchupToFile(matchupFile, matchupEntryFile);
-
-
                 }
             }
         }
@@ -422,9 +420,15 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach(Matchup m in matchups)
             {
-                lines.Add($"{ m.Id },{ m.Entries },");
-                
+                string winner = "";
+                if(m.Winner != null)
+                {
+                    winner = m.Winner.Id.ToString();
+                }
+                lines.Add($"{ m.Id },{ ConvertMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupRound }");
             }
+
+            File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
         }
 
         public static void SaveEntryToFile(this MatchupEntry entry, string matchupEntryFile)

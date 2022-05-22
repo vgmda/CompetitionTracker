@@ -98,7 +98,7 @@ namespace CompetitionLibrary.DataAccess
             }
 
             model.Id = currentId;
-            model.SaveRoundsToFile(model, MatchupFile, MatchupEntryFile);
+            model.SaveRoundsToFile(MatchupFile, MatchupEntryFile);
             competitions.Add(model);
             competitions.SaveToCompetitionFile(CompetitionFile);
         }
