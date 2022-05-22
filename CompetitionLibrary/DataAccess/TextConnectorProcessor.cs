@@ -9,7 +9,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
         {
 
             // C:\Users\vasile.gancin\Documents\CompetitionTracker\Prize.csv
-            return $"{ConfigurationManager.AppSettings["filePath"] }\\{ fileName } ";
+            return $"{ ConfigurationManager.AppSettings["filePath"] }\\{ fileName }";
         }
 
         public static List<string> LoadFile(this string file)
@@ -168,7 +168,15 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 string[] cols = line.Split(',');
                 MatchupEntry me = new MatchupEntry();
                 me.Id = int.Parse(cols[0]);
-                me.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
+                if (cols[1].Length == 0)
+                {
+                    me.TeamCompeting = null;
+                }
+                else
+                {
+                    me.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
+                }
+                
                 me.Score = double.Parse(cols[2]);
                 int parentId = 0;
                 if (int.TryParse(cols[3], out parentId))
@@ -425,12 +433,28 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             matchup.Id = currentId;
 
+            matchups.Add(matchup);
+
+            List<string> lines = new List<string>();
+
+            foreach (Matchup m in matchups)
+            {
+                string winner = "";
+                if (m.Winner != null)
+                {
+                    winner = m.Winner.Id.ToString();
+                }
+                lines.Add($"{ m.Id },{ "" },{ winner },{ m.MatchupRound }");
+            }
+
+            File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
+
             foreach (MatchupEntry entry in matchup.Entries)
             {
                 entry.SaveEntryToFile(matchupEntryFile);
             }
 
-            List<string> lines = new List<string>();
+            lines = new List<string>();
 
             foreach(Matchup m in matchups)
             {
@@ -458,7 +482,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             entry.Id = currentId;
             entries.Add(entry);
 
-            List<string> lines = new List<string>;
+            List<string> lines = new List<string>();
 
             foreach(MatchupEntry e in entries)
             {
@@ -467,7 +491,12 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 {
                     parent = e.ParentMatchup.Id.ToString();
                 }
-                lines.Add($"{ e.Id },{ e.TeamCompeting.Id },{ e.Score },{ parent }");
+                string teamCompeting = "";
+                if (e.TeamCompeting != null)
+                {
+                    teamCompeting = e.TeamCompeting.Id.ToString();
+                }
+                lines.Add($"{ e.Id },{ teamCompeting },{ e.Score },{ parent }");
             }
 
             File.WriteAllLines(GlobalConfig.MatchupEntryFile.FullFilePath(), lines);
