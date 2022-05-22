@@ -307,6 +307,25 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             return output;
         }
 
+        private static string ConvertMatchupEntryListToString(List<MatchupEntry> entries)
+        {
+            string output = "";
+
+            if (entries.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (MatchupEntry e in entries)
+            {
+                output += $"{ e.Id }|";
+            }
+
+            output = output.Substring(0, output.Length - 1);
+
+            return output;
+        }
+
         public static void SaveToPrizeFile(this List<Prize> models, string fileName)
         {
             List<string> lines = new List<string>();
@@ -397,6 +416,14 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             foreach (MatchupEntry entry in matchup.Entries)
             {
                 entry.SaveEntryToFile(matchupEntryFile);
+            }
+
+            List<string> lines = new List<string>();
+
+            foreach(Matchup m in matchups)
+            {
+                lines.Add($"{ m.Id },{ m.Entries },");
+                
             }
         }
 
