@@ -402,7 +402,29 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         public static void SaveEntryToFile(this MatchupEntry entry, string matchupEntryFile)
         {
+            List<MatchupEntry> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntry();
 
+            int currentId = 1;
+
+            if (entries.Count > 0)
+            {
+                currentId = entries.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            entry.Id = currentId;
+            entries.Add(entry);
+
+            List<string> lines = new List<string>();
+
+            foreach (MatchupEntry e in entries)
+            {
+                string parent = "";
+                if (e.ParentMatchup != null)
+                {
+                    parent = e.ParentMatchup.Id.ToString();
+                }
+                lines.Add($"{ e.Id },{ e.TeamCompeting.Id },{ e.Score },{ parent }");
+            }
         }
 
         private static Team LookupTeamById(int id)
