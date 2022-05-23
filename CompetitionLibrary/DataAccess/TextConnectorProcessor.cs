@@ -528,9 +528,20 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
         private static Matchup LookupMatchupById(int id)
         {
-            List<Matchup> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile().ConvertToMatchup();
+            List<string> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile();
 
-            return matchups.Where(x => x.Id == id).First();
+            foreach(string matchup in matchups)
+            {
+                string[] cols = matchup.Split(',');
+                if (cols[0] == id.ToString())
+                {
+                    List<string> matchingMatchups = new List<string>();
+                    matchingMatchups.Add(matchup);
+                    return matchingMatchups.ConvertToMatchup().First();
+                }
+            }
+
+            return null;
         }
 
 
