@@ -129,11 +129,14 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     comp.EnteredTeams.Add(teams.Where(x => x.Id == int.Parse(id)).First());
                 }
 
-                string[] prizeIds = cols[4].Split('|');
-
-                foreach (string id in prizeIds)
+                if (cols[4].Length > 0)
                 {
-                    comp.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
+                    string[] prizeIds = cols[4].Split('|');
+
+                    foreach (string id in prizeIds)
+                    {
+                        comp.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
+                    } 
                 }
 
                 // Capture Rounds information
@@ -407,12 +410,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (Competition comp in models)
             {
-                lines.Add($@"{ comp.Id },
-                    { comp.CompetitionName },
-                    { comp.EntryFee },
-                    { ConvertTeamListToString(comp.EnteredTeams) },
-                    { ConvertPrizeListToString(comp.Prizes) },
-                    { ConvertRoundListToString(comp.Rounds) }");
+                lines.Add($"{ comp.Id },{ comp.CompetitionName },{ comp.EntryFee },{ ConvertTeamListToString(comp.EnteredTeams) },{ ConvertPrizeListToString(comp.Prizes) },{ ConvertRoundListToString(comp.Rounds) }");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
