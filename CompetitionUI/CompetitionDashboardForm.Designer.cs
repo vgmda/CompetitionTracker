@@ -50,7 +50,7 @@
             // loadExistingCompetitionDropDown
             // 
             this.loadExistingCompetitionDropDown.FormattingEnabled = true;
-            this.loadExistingCompetitionDropDown.Location = new System.Drawing.Point(153, 171);
+            this.loadExistingCompetitionDropDown.Location = new System.Drawing.Point(153, 180);
             this.loadExistingCompetitionDropDown.Name = "loadExistingCompetitionDropDown";
             this.loadExistingCompetitionDropDown.Size = new System.Drawing.Size(303, 33);
             this.loadExistingCompetitionDropDown.TabIndex = 20;
@@ -74,7 +74,7 @@
             this.loadCompetitionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loadCompetitionButton.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.loadCompetitionButton.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.loadCompetitionButton.Location = new System.Drawing.Point(211, 232);
+            this.loadCompetitionButton.Location = new System.Drawing.Point(211, 235);
             this.loadCompetitionButton.Name = "loadCompetitionButton";
             this.loadCompetitionButton.Size = new System.Drawing.Size(186, 52);
             this.loadCompetitionButton.TabIndex = 21;
@@ -109,7 +109,7 @@
             this.Controls.Add(this.headerLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "CompetitionDashboardForm";
             this.Text = "Competition Dashboard";
             this.ResumeLayout(false);

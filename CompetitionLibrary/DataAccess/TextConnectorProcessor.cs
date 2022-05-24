@@ -136,12 +136,12 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                     foreach (string id in prizeIds)
                     {
                         comp.Prizes.Add(prizes.Where(x => x.Id == int.Parse(id)).First());
-                    } 
+                    }
                 }
 
                 // Capture Rounds information
                 string[] rounds = cols[5].Split('|');
-                
+
 
                 foreach (string round in rounds)
                 {
@@ -179,7 +179,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 {
                     me.TeamCompeting = LookupTeamById(int.Parse(cols[1]));
                 }
-                
+
                 me.Score = double.Parse(cols[2]);
                 int parentId = 0;
                 if (int.TryParse(cols[3], out parentId))
@@ -242,7 +242,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 {
                     p.Winner = LookupTeamById(int.Parse(cols[2]));
                 }
-                
+
                 p.MatchupRound = int.Parse(cols[3]);
                 output.Add(p);
             }
@@ -459,10 +459,10 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             // Save to file
             List<string> lines = new List<string>();
 
-            foreach(Matchup m in matchups)
+            foreach (Matchup m in matchups)
             {
                 string winner = "";
-                if(m.Winner != null)
+                if (m.Winner != null)
                 {
                     winner = m.Winner.Id.ToString();
                 }
@@ -487,7 +487,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             List<string> lines = new List<string>();
 
-            foreach(MatchupEntry e in entries)
+            foreach (MatchupEntry e in entries)
             {
                 string parent = "";
                 if (e.ParentMatchup != null)
@@ -528,7 +528,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
         {
             List<string> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile();
 
-            foreach(string matchup in matchups)
+            foreach (string matchup in matchups)
             {
                 string[] cols = matchup.Split(',');
                 if (cols[0] == id.ToString())
