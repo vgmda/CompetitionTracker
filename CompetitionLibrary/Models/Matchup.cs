@@ -14,6 +14,10 @@
         /// </summary>
         public List<MatchupEntry> Entries { get; set; } = new List<MatchupEntry>();
         /// <summary>
+        /// The Id from DB that will be used to identify the winner
+        /// </summary>
+        public int WinnerId { get; set; }
+        /// <summary>
         /// The winner of the match
         /// </summary>
         public Team Winner { get; set; }

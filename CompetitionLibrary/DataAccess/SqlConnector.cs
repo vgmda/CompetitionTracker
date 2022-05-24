@@ -236,6 +236,43 @@ namespace CompetitionLibrary.DataAccess
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
                 output = connection.Query<Competition>("dbo.spCompetitions_GetAll").ToList();
+
+                foreach (Competition c in output)
+                {
+                    // Populate prizes
+                    c.Prizes = connection.Query<Prize>("dbo.spPrizes_GetByCompetition").ToList();
+
+                    // Populate Teams
+                    c.EnteredTeams = connection.Query<Team>("dbo.spTeam_GetByCompetition").ToList();
+
+                    foreach(Team team in c.EnteredTeams)
+                    {
+                        var p = new DynamicParameters();
+                        p.Add("@TeamId", team.Id);
+
+                        team.TeamMembers = connection.Query<Person>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
+                    }
+
+                    // Populate Rounds
+                    var p = new DynamicParameters();
+                    p.Add("@CompetitionId", c.Id);
+                    List<Matchup> matchups = connection.Query<Matchup>("dbo.spMatchups_GetByCompetition", p, commandType: CommandType.StoredProcedure).ToList();
+
+                    foreach(Matchup m in matchups)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@MatchupId", m.Id);
+                        m.Entries = connection.Query<MatchupEntry>("dbo.spMatchupEntries_GetByMatchup", p, commandType: CommandType.StoredProcedure).ToList();
+                        
+                        foreach (var me in m.Entries)
+                        {
+                            if (me.TeamCompetingId > 0)
+
+                        }
+
+                    }
+                }
+
             }
 
             return output;
