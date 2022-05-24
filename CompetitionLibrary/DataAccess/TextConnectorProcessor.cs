@@ -9,7 +9,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
         {
 
             // C:\Users\vasile.gancin\Documents\CompetitionTracker\Prize.csv
-            return $"{ ConfigurationManager.AppSettings["filePath"] }\\{ fileName }";
+            return $"{ConfigurationManager.AppSettings["filePath"]}\\{fileName}";
         }
 
         public static List<string> LoadFile(this string file)
@@ -262,7 +262,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (List<Matchup> r in rounds)
             {
-                output += $"{ ConvertMatchupListToString(r) }|";
+                output += $"{ConvertMatchupListToString(r)}|";
             }
 
             // Removing the trailing pipe character
@@ -282,7 +282,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (Matchup m in matchups)
             {
-                output += $"{ m.Id }^";
+                output += $"{m.Id}^";
             }
 
             // Removing the trailing pipe character
@@ -302,7 +302,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (Prize p in prizes)
             {
-                output += $"{ p.Id }|";
+                output += $"{p.Id}|";
             }
 
             // Removing the trailing pipe character
@@ -322,7 +322,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (Team t in teams)
             {
-                output += $"{ t.Id }|";
+                output += $"{t.Id}|";
             }
 
             // Removing the trailing pipe character
@@ -342,7 +342,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (Person p in people)
             {
-                output += $"{ p.Id }|";
+                output += $"{p.Id}|";
             }
 
             // Removing the trailing pipe character
@@ -362,7 +362,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (MatchupEntry e in entries)
             {
-                output += $"{ e.Id }|";
+                output += $"{e.Id}|";
             }
 
             output = output.Substring(0, output.Length - 1);
@@ -375,7 +375,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             List<string> lines = new List<string>();
             foreach (Prize p in models)
             {
-                lines.Add($"{ p.Id },{ p.PlaceNumber },{ p.PlaceName },{ p.PrizeAmount },{ p.PrizePercentage }");
+                lines.Add($"{p.Id},{p.PlaceNumber},{p.PlaceName},{p.PrizeAmount},{p.PrizePercentage}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
@@ -386,7 +386,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
             List<string> lines = new List<string>();
             foreach (Person p in models)
             {
-                lines.Add($"{ p.Id },{ p.FirstName },{ p.LastName },{ p.EmailAddress },{ p.MobileNumber }");
+                lines.Add($"{p.Id},{p.FirstName},{p.LastName},{p.EmailAddress},{p.MobileNumber}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
@@ -398,7 +398,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (Team t in models)
             {
-                lines.Add($"{ t.Id },{ t.TeamName },{ ConvertPeopleListToString(t.TeamMembers) }");
+                lines.Add($"{t.Id},{t.TeamName},{ConvertPeopleListToString(t.TeamMembers)}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
@@ -410,7 +410,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             foreach (Competition comp in models)
             {
-                lines.Add($"{ comp.Id },{ comp.CompetitionName },{ comp.EntryFee },{ ConvertTeamListToString(comp.EnteredTeams) },{ ConvertPrizeListToString(comp.Prizes) },{ ConvertRoundListToString(comp.Rounds) }");
+                lines.Add($"{comp.Id},{comp.CompetitionName},{comp.EntryFee},{ConvertTeamListToString(comp.EnteredTeams)},{ConvertPrizeListToString(comp.Prizes)},{ConvertRoundListToString(comp.Rounds)}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
@@ -466,7 +466,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 {
                     winner = m.Winner.Id.ToString();
                 }
-                lines.Add($"{ m.Id },{ ConvertMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupRound }");
+                lines.Add($"{m.Id},{ConvertMatchupEntryListToString(m.Entries)},{winner},{m.MatchupRound}");
             }
 
             File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
@@ -499,7 +499,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
                 {
                     teamCompeting = e.TeamCompeting.Id.ToString();
                 }
-                lines.Add($"{ e.Id },{ teamCompeting },{ e.Score },{ parent }");
+                lines.Add($"{e.Id},{teamCompeting},{e.Score},{parent}");
             }
 
             File.WriteAllLines(GlobalConfig.MatchupEntryFile.FullFilePath(), lines);

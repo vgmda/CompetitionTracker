@@ -80,6 +80,7 @@
             this.loadCompetitionButton.TabIndex = 21;
             this.loadCompetitionButton.Text = "Load Competition";
             this.loadCompetitionButton.UseVisualStyleBackColor = true;
+        
             // 
             // createCompetitionButton
             // 
@@ -95,6 +96,7 @@
             this.createCompetitionButton.TabIndex = 31;
             this.createCompetitionButton.Text = "Create Competition";
             this.createCompetitionButton.UseVisualStyleBackColor = true;
+            this.createCompetitionButton.Click += new System.EventHandler(this.createCompetitionButton_Click_1);
             // 
             // CompetitionDashboardForm
             // 

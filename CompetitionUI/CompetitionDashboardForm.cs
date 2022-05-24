@@ -10,6 +10,22 @@ namespace CompetitionUI
         public CompetitionDashboardForm()
         {
             InitializeComponent();
+
+            WireUpLists();
+
+        }
+
+        private void WireUpLists()
+        {
+            loadExistingCompetitionDropDown.DataSource = competitions;
+            loadExistingCompetitionDropDown.DisplayMember = "CompetitionName";
+        }
+
+        private void createCompetitionButton_Click_1(object sender, EventArgs e)
+        {
+            CreateCompetitionForm frm = new CreateCompetitionForm();
+            frm.Show();
+
         }
     }
 }

@@ -102,5 +102,12 @@ namespace CompetitionLibrary.DataAccess
             competitions.Add(model);
             competitions.SaveToCompetitionFile(CompetitionFile);
         }
+        public List<Competition> GetCompetition_All()
+        {
+            return CompetitionFile
+                .FullFilePath()
+                .LoadFile()
+                .ConvertToCompetition(TeamFile, PeopleFile, PrizesFile);
+        }
     }
 }
