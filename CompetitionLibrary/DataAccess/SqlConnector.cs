@@ -9,7 +9,6 @@ namespace CompetitionLibrary.DataAccess
     {
         private const string db = "Competitions";
 
-
         public Person CreatePerson(Person model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
@@ -28,7 +27,7 @@ namespace CompetitionLibrary.DataAccess
             }
         }
 
-        // TODO - Make the CreatePrize() method actually save to the database
+        // TODO - Make the CreatePrize() method actually save to the database - DONE!
         /// <summary>
         /// Saves a new prize to the database
         /// </summary>
@@ -197,8 +196,6 @@ namespace CompetitionLibrary.DataAccess
 
         }
 
-
-
         public List<Person> GetPerson_All()
         {
             List<Person> output;
@@ -227,6 +224,18 @@ namespace CompetitionLibrary.DataAccess
                     team.TeamMembers = connection.Query<Person>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).ToList();
                 }
 
+            }
+
+            return output;
+        }
+
+        public List<Competition> GetCompetition_All()
+        {
+            List<Competition> output;
+
+            using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
+            {
+                output = connection.Query<Competition>("dbo.spCompetitions_GetAll").ToList();
             }
 
             return output;
