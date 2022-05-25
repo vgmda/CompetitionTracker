@@ -6,6 +6,7 @@ namespace CompetitionUI
     {
         private Competition competition;
         List<int> rounds = new List<int>();
+        List<Matchup> selectedMatchups = new List<Matchup>();
 
         public CompetitionViewerForm(Competition competitionModel)
         {
@@ -23,11 +24,20 @@ namespace CompetitionUI
             competitionName.Text = competition.CompetitionName;
         }
 
-        private void WireUpLists()
+        private void WireUpRoundsLists()
         {
             roundDropDown.DataSource = null;
             roundDropDown.DataSource = rounds;
+
         }
+        private void WireUpMathupsLists()
+        {
+            matchupListBox.DataSource = null;
+            matchupListBox.DataSource = selectedMatchups;
+            matchupListBox.DisplayMember = "DisplayName";
+
+        }
+
 
         private void LoadRounds()
         {
@@ -46,12 +56,26 @@ namespace CompetitionUI
 
             }
 
-            WireUpLists();
+            WireUpRoundsLists();
         }
 
         private void roundDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadMatchupList();
+        }
+        private void LoadMatchupList()
+        {
+            int round = (int)roundDropDown.SelectedItem;
 
+            foreach (List<Matchup> matchups in competition.Rounds)
+            {
+                if (matchups.First().MatchupRound == round)
+                {
+                    selectedMatchups = matchups;
+                }
+            }
+
+            WireUpMathupsLists();
         }
     }
 }
