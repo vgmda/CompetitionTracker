@@ -1,18 +1,22 @@
 using CompetitionLibrary.Models;
+using System.ComponentModel;
 
 namespace CompetitionUI
 {
     public partial class CompetitionViewerForm : Form
     {
         private Competition competition;
-        List<int> rounds = new List<int>();
-        List<Matchup> selectedMatchups = new List<Matchup>();
+        BindingList<int> rounds = new BindingList<int>();
+        BindingList<Matchup> selectedMatchups = new BindingList<Matchup>();
+
 
         public CompetitionViewerForm(Competition competitionModel)
         {
             InitializeComponent();
 
             competition = competitionModel;
+
+            WireUpLists();
 
             LoadFormData();
 
@@ -24,63 +28,59 @@ namespace CompetitionUI
             competitionName.Text = competition.CompetitionName;
         }
 
-        private void WireUpRoundsLists()
+        private void WireUpLists()
         {
-            roundDropDown.DataSource = null;
             roundDropDown.DataSource = rounds;
-
-        }
-        private void WireUpMathupsLists()
-        {
-            matchupListBox.DataSource = null;
             matchupListBox.DataSource = selectedMatchups;
             matchupListBox.DisplayMember = "DisplayName";
 
         }
 
-
         private void LoadRounds()
         {
-            rounds = new List<int>();
+            rounds.Clear();
 
             rounds.Add(1);
             int currentRound = 1;
 
-            foreach(List<Matchup> matchups in competition.Rounds)
+            foreach (List<Matchup> matchups in competition.Rounds)
             {
                 if (matchups.First().MatchupRound > currentRound)
                 {
                     currentRound = matchups.First().MatchupRound;
                     rounds.Add(currentRound);
                 }
-
             }
 
-            WireUpRoundsLists();
+            LoadMatchups(1);
         }
 
         private void roundDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadMatchups();
+            LoadMatchups((int)roundDropDown.SelectedItem);
         }
-        private void LoadMatchups()
-        {
-            int round = (int)roundDropDown.SelectedItem;
 
+        private void LoadMatchups(int round)
+        {
+            
             foreach (List<Matchup> matchups in competition.Rounds)
             {
                 if (matchups.First().MatchupRound == round)
                 {
-                    selectedMatchups = matchups;
+                    selectedMatchups.Clear();
+
+                    foreach (Matchup m in matchups)
+                    {
+                        selectedMatchups.Add(m);
+                    }
                 }
             }
 
-            WireUpMathupsLists();
+            LoadMatchup(selectedMatchups.First());
         }
 
-        private void LoadMatchup()
+        private void LoadMatchup(Matchup m)
         {
-            Matchup m = (Matchup)matchupListBox.SelectedItem;
 
             for (int i = 0; i < m.Entries.Count; i++)
             {
@@ -90,6 +90,9 @@ namespace CompetitionUI
                     {
                         teamOneName.Text = m.Entries[0].TeamCompeting.TeamName;
                         teamOneScoreValue.Text = m.Entries[0].Score.ToString();
+
+                        teamTwoName.Text = "<bye>";
+                        teamTwoScoreValue.Text = "0";
                     }
                     else
                     {
@@ -116,7 +119,8 @@ namespace CompetitionUI
 
         private void matchupListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadMatchup();
+            var m = (Matchup)matchupListBox.SelectedItem;
+            if (m != null) LoadMatchup(m);
         }
     }
 }

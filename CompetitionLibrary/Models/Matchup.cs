@@ -31,7 +31,7 @@
             get
             {
                 string output = "";
-                foreach(MatchupEntry me in Entries)
+                foreach (MatchupEntry me in Entries)
                 {
                     if (me.TeamCompeting != null)
                     {
@@ -42,7 +42,7 @@
                         else
                         {
                             output += $" vs. {me.TeamCompeting.TeamName}";
-                        } 
+                        }
                     }
                     else
                     {
