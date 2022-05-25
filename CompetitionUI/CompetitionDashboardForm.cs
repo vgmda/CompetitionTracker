@@ -27,5 +27,12 @@ namespace CompetitionUI
             frm.Show();
 
         }
+
+        private void loadCompetitionButton_Click(object sender, EventArgs e)
+        {
+            Competition comp = (Competition)loadExistingCompetitionDropDown.SelectedItem;
+            CompetitionViewerForm frm = new CompetitionViewerForm(comp);
+            frm.Show();
+        }
     }
 }
