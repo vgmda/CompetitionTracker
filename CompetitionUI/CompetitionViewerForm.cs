@@ -79,7 +79,10 @@ namespace CompetitionUI
                 }
             }
 
-            LoadMatchup(selectedMatchups.First());
+            if (selectedMatchups.Count > 0)
+            {
+                LoadMatchup(selectedMatchups.First()); 
+            }
         }
 
         private void LoadMatchup(Matchup m)
@@ -139,6 +142,8 @@ namespace CompetitionUI
         private void scoreButton_Click(object sender, EventArgs e)
         {
             Matchup m = (Matchup)matchupListBox.SelectedItem;
+            double teamOneScore = 0;
+            double teamTwoScore = 0;
 
             for (int i = 0; i < m.Entries.Count; i++)
             {
@@ -146,29 +151,50 @@ namespace CompetitionUI
                 {
                     if (m.Entries[0].TeamCompeting != null)
                     {
-                        teamOneName.Text = m.Entries[0].TeamCompeting.TeamName;
-                        m.Entries[0].Score = double.Parse(teamOneScoreValue.Text);
-                    }
-                    else
-                    {
-                        teamOneName.Text = "Not Yet Set";
-                        teamOneScoreValue.Text = "";
-                    }
-                }
+                        bool scoreValid = double.TryParse(teamOneScoreValue.Text, out teamOneScore);
 
+                        if (scoreValid)
+                        {
+                            m.Entries[0].Score = teamOneScore;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a valid score for team 1");
+                            return;
+                        }
+                    }   
+                }
                 if (i == 1)
                 {
                     if (m.Entries[1].TeamCompeting != null)
                     {
-                        teamTwoName.Text = m.Entries[1].TeamCompeting.TeamName;
-                        teamTwoScoreValue.Text = m.Entries[1].Score.ToString();
-                    }
-                    else
-                    {
-                        teamTwoName.Text = "Not Yet Set";
-                        teamTwoScoreValue.Text = "";
+                        bool scoreValid = double.TryParse(teamTwoScoreValue.Text, out teamTwoScore);
+
+                        if (scoreValid)
+                        {
+                            m.Entries[1].Score = teamTwoScore;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a valid score for team 2");
+                            return;
+                        }
                     }
                 }
+            }
+
+            if (teamOneScore > teamTwoScore)
+            {
+                // Team one wins
+                m.Winner = m.Entries[0].TeamCompeting;
+            }
+            else if (teamTwoScore > teamOneScore)
+            {
+                m.Winner = m.Entries[1].TeamCompeting;
+            }
+            else
+            {
+                MessageBox.Show("I no not handle tie games");
             }
         }
     }
