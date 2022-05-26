@@ -62,7 +62,6 @@ namespace CompetitionUI
 
         private void LoadMatchups(int round)
         {
-            
             foreach (List<Matchup> matchups in competition.Rounds)
             {
                 if (matchups.First().MatchupRound == round)
@@ -71,7 +70,11 @@ namespace CompetitionUI
 
                     foreach (Matchup m in matchups)
                     {
-                        selectedMatchups.Add(m);
+                        if (m.Winner == null || !unplayedOnlyCheckbox.Checked)
+                        {
+                            selectedMatchups.Add(m);
+                        }
+                        
                     }
                 }
             }
@@ -120,7 +123,53 @@ namespace CompetitionUI
         private void matchupListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var m = (Matchup)matchupListBox.SelectedItem;
-            if (m != null) LoadMatchup(m);
+
+            if (m != null)
+            {
+                LoadMatchup(m);
+            }
+            // LoadMatchup((Matchup)matchupListBox.SelectedItem);
+        }
+
+        private void unplayedOnlyCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadMatchups((int)roundDropDown.SelectedItem);
+        }
+
+        private void scoreButton_Click(object sender, EventArgs e)
+        {
+            Matchup m = (Matchup)matchupListBox.SelectedItem;
+
+            for (int i = 0; i < m.Entries.Count; i++)
+            {
+                if (i == 0)
+                {
+                    if (m.Entries[0].TeamCompeting != null)
+                    {
+                        teamOneName.Text = m.Entries[0].TeamCompeting.TeamName;
+                        m.Entries[0].Score = double.Parse(teamOneScoreValue.Text);
+                    }
+                    else
+                    {
+                        teamOneName.Text = "Not Yet Set";
+                        teamOneScoreValue.Text = "";
+                    }
+                }
+
+                if (i == 1)
+                {
+                    if (m.Entries[1].TeamCompeting != null)
+                    {
+                        teamTwoName.Text = m.Entries[1].TeamCompeting.TeamName;
+                        teamTwoScoreValue.Text = m.Entries[1].Score.ToString();
+                    }
+                    else
+                    {
+                        teamTwoName.Text = "Not Yet Set";
+                        teamTwoScoreValue.Text = "";
+                    }
+                }
+            }
         }
     }
 }
