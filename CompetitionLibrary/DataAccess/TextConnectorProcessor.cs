@@ -475,20 +475,23 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
         public static void UpdateMatchupToFile(this Matchup matchup)
         {
             List<Matchup> matchups = GlobalConfig.MatchupFile.FullFilePath().LoadFile().ConvertToMatchup();
-            
+            Matchup oldMatchup = new Matchup();
+
             foreach (Matchup m in matchups)
             {
                 if (m.Id == matchup.Id)
                 {
-                    matchups.Remove(m);
+                    oldMatchup = m;
                 }
             }
+
+            matchups.Remove(oldMatchup);
 
             matchups.Add(matchup);
 
             foreach (MatchupEntry entry in matchup.Entries)
             {
-                entry.SaveEntryToFile(matchupEntryFile);
+                entry.UpdateEntryToFile();
             }
             // Save to file
             List<string> lines = new List<string>();
@@ -538,6 +541,42 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             File.WriteAllLines(GlobalConfig.MatchupEntryFile.FullFilePath(), lines);
 
+        }
+
+        public static void UpdateEntryToFile(this MatchupEntry entry)
+        {
+            List<MatchupEntry> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntry();
+            MatchupEntry oldEntry = new MatchupEntry();
+
+            foreach (MatchupEntry e in entries)
+            {
+                if (e.Id == entry.Id)
+                {
+                    oldEntry = e;
+                }
+            }
+
+            entries.Remove(oldEntry);
+            entries.Add(entry);
+
+            List<string> lines = new List<string>();
+
+            foreach (MatchupEntry e in entries)
+            {
+                string parent = "";
+                if (e.ParentMatchup != null)
+                {
+                    parent = e.ParentMatchup.Id.ToString();
+                }
+                string teamCompeting = "";
+                if (e.TeamCompeting != null)
+                {
+                    teamCompeting = e.TeamCompeting.Id.ToString();
+                }
+                lines.Add($"{e.Id},{teamCompeting},{e.Score},{parent}");
+            }
+
+            File.WriteAllLines(GlobalConfig.MatchupEntryFile.FullFilePath(), lines);
         }
 
         private static Team LookupTeamById(int id)

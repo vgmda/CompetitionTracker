@@ -219,6 +219,8 @@ namespace CompetitionUI
 
             LoadMatchups((int)roundDropDown.SelectedItem);
 
+
+
             // Call Sql update method
             GlobalConfig.Connection.UpdateMatchup(m);
         }

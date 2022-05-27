@@ -118,7 +118,7 @@ namespace CompetitionLibrary.DataAccess
 
         public void UpdateMatchup(Matchup model)
         {
-            
+            model.UpdateMatchupToFile();
         }
     }
 }
