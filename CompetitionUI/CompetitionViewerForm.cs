@@ -74,14 +74,14 @@ namespace CompetitionUI
                         {
                             selectedMatchups.Add(m);
                         }
-                        
+
                     }
                 }
             }
 
             if (selectedMatchups.Count > 0)
             {
-                LoadMatchup(selectedMatchups.First()); 
+                LoadMatchup(selectedMatchups.First());
             }
 
             DisplayMatchupInfo();
@@ -179,7 +179,7 @@ namespace CompetitionUI
                             MessageBox.Show("WARNING: Please enter a valid score for Team No: 1");
                             return;
                         }
-                    }   
+                    }
                 }
                 if (i == 1)
                 {
