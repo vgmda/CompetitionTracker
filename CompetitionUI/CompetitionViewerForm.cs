@@ -1,3 +1,4 @@
+using CompetitionLibrary;
 using CompetitionLibrary.Models;
 using System.ComponentModel;
 
@@ -218,7 +219,8 @@ namespace CompetitionUI
 
             LoadMatchups((int)roundDropDown.SelectedItem);
 
-
+            // Call Sql update method
+            GlobalConfig.Connection.UpdateMatchup(m);
         }
     }
 }

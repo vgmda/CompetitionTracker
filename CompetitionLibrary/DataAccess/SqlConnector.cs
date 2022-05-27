@@ -320,12 +320,23 @@ namespace CompetitionLibrary.DataAccess
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
-                // dbo.spMatchups_Update @id, @WinnerId
+                // dbo.spMatchups_Update = @id, @WinnerId
                 var p = new DynamicParameters();
                 p.Add("@id", model.Id);
                 p.Add("@WinnerId", model.Winner.Id);
 
                 connection.Execute("dbo.spMatchups_Update", p, commandType: CommandType.StoredProcedure);
+
+                // dbo.spMatchupEntries_Update = @id, @TeamCompetingId, @Score
+                foreach (MatchupEntry me in model.Entries)
+                {
+                    p = new DynamicParameters();
+                    p.Add("@id", me.Id);
+                    p.Add("@TeamCompetingId", me.TeamCompeting.Id);
+                    p.Add("@Score", me.Score);
+
+                    connection.Execute("dbo.spMatchupEntries_Update", p, commandType: CommandType.StoredProcedure);
+                }
             }
         }
     }
