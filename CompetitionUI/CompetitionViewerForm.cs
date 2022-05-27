@@ -217,7 +217,7 @@ namespace CompetitionUI
                 MessageBox.Show("ERROR: Tie games are not handled");
             }
 
-            foreach(List<Matchup> round in competition.Rounds)
+            foreach (List<Matchup> round in competition.Rounds)
             {
                 // rm = Round Matchup
                 foreach (Matchup rm in round)
@@ -230,7 +230,7 @@ namespace CompetitionUI
                             {
                                 me.TeamCompeting = m.Winner;
                                 GlobalConfig.Connection.UpdateMatchup(rm);
-                            } 
+                            }
                         }
                     }
                 }

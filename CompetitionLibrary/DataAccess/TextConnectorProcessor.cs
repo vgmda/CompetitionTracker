@@ -614,7 +614,5 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
 
             return null;
         }
-
-
     }
 }

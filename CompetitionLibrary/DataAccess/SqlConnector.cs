@@ -9,7 +9,7 @@ namespace CompetitionLibrary.DataAccess
     {
         private const string db = "Competitions";
 
-        public Person CreatePerson(Person model)
+        public void CreatePerson(Person model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -22,8 +22,6 @@ namespace CompetitionLibrary.DataAccess
                 connection.Execute("dbo.spPeople_Insert", p, commandType: CommandType.StoredProcedure);
 
                 model.Id = p.Get<int>("@id");
-
-                return model;
             }
         }
 
@@ -33,7 +31,7 @@ namespace CompetitionLibrary.DataAccess
         /// </summary>
         /// <param name="model">The prize information</param>
         /// <returns>The prize information, including the unique identifier</returns>
-        public Prize CreatePrize(Prize model)
+        public void CreatePrize(Prize model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -47,13 +45,11 @@ namespace CompetitionLibrary.DataAccess
                 connection.Execute("dbo.spPrizes_Insert", p, commandType: CommandType.StoredProcedure);
 
                 model.Id = p.Get<int>("@id");
-
-                return model;
             }
 
         }
 
-        public Team CreateTeam(Team model)
+        public void CreateTeam(Team model)
         {
             using (IDbConnection connection = new System.Data.SqlClient.SqlConnection(GlobalConfig.CnnString(db)))
             {
@@ -74,8 +70,6 @@ namespace CompetitionLibrary.DataAccess
                     connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
 
                 }
-
-                return model;
             }
 
         }
@@ -327,7 +321,7 @@ namespace CompetitionLibrary.DataAccess
                     p.Add("@id", model.Id);
                     p.Add("@WinnerId", model.Winner.Id);
 
-                    connection.Execute("dbo.spMatchups_Update", p, commandType: CommandType.StoredProcedure); 
+                    connection.Execute("dbo.spMatchups_Update", p, commandType: CommandType.StoredProcedure);
                 }
 
                 // dbo.spMatchupEntries_Update = @id, @TeamCompetingId, @Score
@@ -340,7 +334,7 @@ namespace CompetitionLibrary.DataAccess
                         p.Add("@TeamCompetingId", me.TeamCompeting.Id);
                         p.Add("@Score", me.Score);
 
-                        connection.Execute("dbo.spMatchupEntries_Update", p, commandType: CommandType.StoredProcedure); 
+                        connection.Execute("dbo.spMatchupEntries_Update", p, commandType: CommandType.StoredProcedure);
                     }
                 }
             }

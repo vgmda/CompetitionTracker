@@ -6,16 +6,9 @@ namespace CompetitionLibrary.DataAccess
 {
     public class TextConnector : IDataConnection
     {
-        private const string PrizesFile = "Prize.csv";
-        private const string PeopleFile = "Person.csv";
-        private const string TeamFile = "Team.csv";
-        private const string CompetitionFile = "Competition.csv";
-        private const string MatchupFile = "Matchup.csv";
-        private const string MatchupEntryFile = "MatchupEntry.csv";
-
-        public Person CreatePerson(Person model)
+        public void CreatePerson(Person model)
         {
-            List<Person> people = PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
+            List<Person> people = GlobalConfig.PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
 
             int currentId = 1;
 
@@ -26,16 +19,13 @@ namespace CompetitionLibrary.DataAccess
 
             model.Id = currentId;
             people.Add(model);
-            people.SaveToPeopleFile(PeopleFile);
-
-            return model;
+            people.SaveToPeopleFile(GlobalConfig.PeopleFile);
         }
 
-        // TODO - Write up the createPrize for text files
-        public Prize CreatePrize(Prize model)
+        public void CreatePrize(Prize model)
         {
             // Load the text file and convert the text to List<Prize>
-            List<Prize> prizes = PrizesFile.FullFilePath().LoadFile().ConvertToPrize();
+            List<Prize> prizes = GlobalConfig.PrizesFile.FullFilePath().LoadFile().ConvertToPrize();
 
             // Find the max ID 
             int currentId = 1;
@@ -51,20 +41,18 @@ namespace CompetitionLibrary.DataAccess
 
             // Convert the prizes to list<string>
             // Save the list<string> to the text file
-            prizes.SaveToPrizeFile(PrizesFile);
-
-            return model;
+            prizes.SaveToPrizeFile(GlobalConfig.PrizesFile);
         }
 
         public List<Person> GetPerson_All()
         {
             // Methods already implemented, when returned, it will load and read all people from the file
-            return PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
+            return GlobalConfig.PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
         }
 
-        public Team CreateTeam(Team model)
+        public void CreateTeam(Team model)
         {
-            List<Team> teams = TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
+            List<Team> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeam(GlobalConfig.PeopleFile);
 
             // Find the max ID 
             int currentId = 1;
@@ -76,24 +64,20 @@ namespace CompetitionLibrary.DataAccess
 
             model.Id = currentId;
             teams.Add(model);
-            teams.SaveToTeamFile(TeamFile);
-
-            return model;
-
-
+            teams.SaveToTeamFile(GlobalConfig.TeamFile);
         }
 
         public List<Team> GetTeam_All()
         {
-            return TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
+            return GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeam(GlobalConfig.PeopleFile);
         }
 
         public void CreateCompetition(Competition model)
         {
-            List<Competition> competitions = CompetitionFile
+            List<Competition> competitions = GlobalConfig.CompetitionFile
                 .FullFilePath()
                 .LoadFile()
-                .ConvertToCompetition(TeamFile, PeopleFile, PrizesFile);
+                .ConvertToCompetition(GlobalConfig.TeamFile, GlobalConfig.PeopleFile, GlobalConfig.PrizesFile);
 
             int currentId = 1;
 
@@ -103,17 +87,17 @@ namespace CompetitionLibrary.DataAccess
             }
 
             model.Id = currentId;
-            model.SaveRoundsToFile(MatchupFile, MatchupEntryFile);
+            model.SaveRoundsToFile(GlobalConfig.MatchupFile, GlobalConfig.MatchupEntryFile);
             competitions.Add(model);
-            competitions.SaveToCompetitionFile(CompetitionFile);
+            competitions.SaveToCompetitionFile(GlobalConfig.CompetitionFile);
         }
 
         public List<Competition> GetCompetition_All()
         {
-            return CompetitionFile
+            return GlobalConfig.CompetitionFile
                 .FullFilePath()
                 .LoadFile()
-                .ConvertToCompetition(TeamFile, PeopleFile, PrizesFile);
+                .ConvertToCompetition(GlobalConfig.TeamFile, GlobalConfig.PeopleFile, GlobalConfig.PrizesFile);
         }
 
         public void UpdateMatchup(Matchup model)

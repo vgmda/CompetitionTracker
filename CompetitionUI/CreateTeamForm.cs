@@ -66,7 +66,7 @@ namespace CompetitionUI
                 p.EmailAddress = emailValue.Text;
                 p.MobileNumber = mobileValue.Text;
 
-                p = GlobalConfig.Connection.CreatePerson(p);
+                GlobalConfig.Connection.CreatePerson(p);
 
                 selectedTeamMembers.Add(p);
 
