@@ -12,5 +12,6 @@ namespace CompetitionLibrary.DataAccess
         List<Person> GetPerson_All();
         List<Team> GetTeam_All();
         List<Competition> GetCompetition_All();
+        void UpdateMatchup(Matchup model);
     }
 }

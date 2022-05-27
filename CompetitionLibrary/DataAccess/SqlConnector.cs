@@ -315,5 +315,10 @@ namespace CompetitionLibrary.DataAccess
 
             return output;
         }
+
+        public void UpdateMatchup(Matchup model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

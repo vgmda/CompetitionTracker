@@ -30,6 +30,7 @@ namespace CompetitionLibrary.DataAccess
 
             return model;
         }
+
         // TODO - Write up the createPrize for text files
         public Prize CreatePrize(Prize model)
         {
@@ -54,11 +55,13 @@ namespace CompetitionLibrary.DataAccess
 
             return model;
         }
+
         public List<Person> GetPerson_All()
         {
             // Methods already implemented, when returned, it will load and read all people from the file
             return PeopleFile.FullFilePath().LoadFile().ConvertToPerson();
         }
+
         public Team CreateTeam(Team model)
         {
             List<Team> teams = TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
@@ -79,10 +82,12 @@ namespace CompetitionLibrary.DataAccess
 
 
         }
+
         public List<Team> GetTeam_All()
         {
             return TeamFile.FullFilePath().LoadFile().ConvertToTeam(PeopleFile);
         }
+
         public void CreateCompetition(Competition model)
         {
             List<Competition> competitions = CompetitionFile
@@ -102,12 +107,18 @@ namespace CompetitionLibrary.DataAccess
             competitions.Add(model);
             competitions.SaveToCompetitionFile(CompetitionFile);
         }
+
         public List<Competition> GetCompetition_All()
         {
             return CompetitionFile
                 .FullFilePath()
                 .LoadFile()
                 .ConvertToCompetition(TeamFile, PeopleFile, PrizesFile);
+        }
+
+        public void UpdateMatchup(Matchup model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

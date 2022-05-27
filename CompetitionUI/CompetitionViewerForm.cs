@@ -176,7 +176,7 @@ namespace CompetitionUI
                         }
                         else
                         {
-                            MessageBox.Show("Please enter a valid score for team 1");
+                            MessageBox.Show("WARNING: Please enter a valid score for Team No: 1");
                             return;
                         }
                     }   
@@ -193,7 +193,7 @@ namespace CompetitionUI
                         }
                         else
                         {
-                            MessageBox.Show("Please enter a valid score for team 2");
+                            MessageBox.Show("WARNING: Please enter a valid score for Team No: 2");
                             return;
                         }
                     }
@@ -207,12 +207,18 @@ namespace CompetitionUI
             }
             else if (teamTwoScore > teamOneScore)
             {
+                // Team two wins
                 m.Winner = m.Entries[1].TeamCompeting;
             }
             else
             {
-                MessageBox.Show("I no not handle tie games");
+                // Tie games functionality is not handled in this app.. for now.
+                MessageBox.Show("ERROR: Tie games are not handled");
             }
+
+            LoadMatchups((int)roundDropDown.SelectedItem);
+
+
         }
     }
 }
