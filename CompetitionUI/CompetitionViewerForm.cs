@@ -200,47 +200,8 @@ namespace CompetitionUI
                     }
                 }
             }
-
-            if (teamOneScore > teamTwoScore)
-            {
-                // Team one wins
-                m.Winner = m.Entries[0].TeamCompeting;
-            }
-            else if (teamTwoScore > teamOneScore)
-            {
-                // Team two wins
-                m.Winner = m.Entries[1].TeamCompeting;
-            }
-            else
-            {
-                // Tie games functionality is not handled in this app.. for now.
-                MessageBox.Show("ERROR: Tie games are not handled");
-            }
-
-            foreach (List<Matchup> round in competition.Rounds)
-            {
-                // rm = Round Matchup
-                foreach (Matchup rm in round)
-                {
-                    foreach (MatchupEntry me in rm.Entries)
-                    {
-                        if (me.ParentMatchup != null)
-                        {
-                            if (me.ParentMatchup.Id == m.Id)
-                            {
-                                me.TeamCompeting = m.Winner;
-                                GlobalConfig.Connection.UpdateMatchup(rm);
-                            }
-                        }
-                    }
-                }
-
-            }
-
+            CompetitionLogic.UpdateCompetitionResults(competition);
             LoadMatchups((int)roundDropDown.SelectedItem);
-
-            // Call Sql update method
-            GlobalConfig.Connection.UpdateMatchup(m);
         }
     }
 }

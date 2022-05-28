@@ -13,7 +13,6 @@ namespace CompetitionLibrary
         public const string MatchupEntryFile = "MatchupEntry.csv";
 
         public static IDataConnection Connection { get; private set; }
-
         public static void InitializeConnections(DatabaseType db)
         {
 
@@ -31,8 +30,6 @@ namespace CompetitionLibrary
                 Connection = text;
             }
         }
-
-
         // Connection string value from App.config
         public static string CnnString(string name)
         {

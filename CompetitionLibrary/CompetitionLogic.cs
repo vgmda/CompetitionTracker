@@ -8,7 +8,6 @@ namespace CompetitionLibrary
         // Check if it is big enough - if not, add in byes - 2(teams)*2(teams)*2(teams)*2(teams) = 2^4
         // Create first round of matchups
         // Create every round after that - 8 matchups > 4 matchups > 2 matchups > 1 matchup
-
         public static void CreateRounds(Competition model)
         {
             List<Team> randomizedTeams = RandomizeTeamOrder(model.EnteredTeams);
@@ -19,7 +18,62 @@ namespace CompetitionLibrary
 
             CreateOtherRounds(model, rounds);
         }
+        public static void UpdateCompetitionResults(Competition model)
+        {
+            List<Matchup> toScore = new List<Matchup>();
 
+            foreach (List<Matchup> round in model.Rounds)
+            {
+                foreach (Matchup rm in round)
+                {
+                    // rm.Entries.Count == 1, if this is a bye entry
+                    if (rm.Entries.Any(x =>x.Score != 0) || rm.Entries.Count == 1)
+                    {
+                        toScore.Add(rm);
+                    }
+                }
+            }
+
+            //if (teamOneScore > teamTwoScore)
+            //{
+            //    // Team one wins
+            //    m.Winner = m.Entries[0].TeamCompeting;
+            //}
+            //else if (teamTwoScore > teamOneScore)
+            //{
+            //    // Team two wins
+            //    m.Winner = m.Entries[1].TeamCompeting;
+            //}
+            //else
+            //{
+            //    // Tie games functionality is not handled in this app.. for now.
+            //    MessageBox.Show("ERROR: Tie games are not handled");
+            //}
+
+            //foreach (List<Matchup> round in model.Rounds)
+            //{
+            //    // rm = Round Matchup
+            //    foreach (Matchup rm in round)
+            //    {
+            //        foreach (MatchupEntry me in rm.Entries)
+            //        {
+            //            if (me.ParentMatchup != null)
+            //            {
+            //                if (me.ParentMatchup.Id == m.Id)
+            //                {
+            //                    me.TeamCompeting = m.Winner;
+            //                    GlobalConfig.Connection.UpdateMatchup(rm);
+            //                }
+            //            }
+            //        }
+            //    }
+
+            //}
+
+            // Call Sql update method
+            //GlobalConfig.Connection.UpdateMatchup(m);
+
+        }
         private static void CreateOtherRounds(Competition model, int rounds)
         {
             int round = 2;
@@ -50,7 +104,6 @@ namespace CompetitionLibrary
 
             }
         }
-
         private static List<Matchup> CreateFirstRound(int byes, List<Team> teams)
         {
             List<Matchup> output = new List<Matchup>();
@@ -78,8 +131,6 @@ namespace CompetitionLibrary
             return output;
 
         }
-
-
         private static int NumberOfByes(int rounds, int numberOfTeams)
         {
             int output = 0;
@@ -97,7 +148,6 @@ namespace CompetitionLibrary
             return output;
 
         }
-
         private static int FindNumberOfRounds(int teamCount)
         {
             int output = 1;
@@ -118,7 +168,6 @@ namespace CompetitionLibrary
             return output;
 
         }
-
         private static List<Team> RandomizeTeamOrder(List<Team> teams)
         {
             return teams.OrderBy(x => Guid.NewGuid()).ToList();
