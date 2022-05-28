@@ -37,30 +37,35 @@ namespace CompetitionLibrary
 
             MarkWinnersInMatchups(toScore);
 
-
-            //foreach (List<Matchup> round in model.Rounds)
-            //{
-            //    // rm = Round Matchup
-            //    foreach (Matchup rm in round)
-            //    {
-            //        foreach (MatchupEntry me in rm.Entries)
-            //        {
-            //            if (me.ParentMatchup != null)
-            //            {
-            //                if (me.ParentMatchup.Id == m.Id)
-            //                {
-            //                    me.TeamCompeting = m.Winner;
-            //                    GlobalConfig.Connection.UpdateMatchup(rm);
-            //                }
-            //            }
-            //        }
-            //    }
-
-            //}
+            AdvanceWinners(toScore, model);
 
             // Call Sql update method
-            //GlobalConfig.Connection.UpdateMatchup(m);
+            // GlobalConfig.Connection.UpdateMatchup(m);
 
+        }
+        private static void AdvanceWinners(List<Matchup> models, Competition competition)
+        {
+            foreach (Matchup m in models)
+            {
+                foreach (List<Matchup> round in competition.Rounds)
+                {
+                    // rm = Round Matchup
+                    foreach (Matchup rm in round)
+                    {
+                        foreach (MatchupEntry me in rm.Entries)
+                        {
+                            if (me.ParentMatchup != null)
+                            {
+                                if (me.ParentMatchup.Id == m.Id)
+                                {
+                                    me.TeamCompeting = m.Winner;
+                                    GlobalConfig.Connection.UpdateMatchup(rm);
+                                }
+                            }
+                        }
+                    }
+                } 
+            }
         }
         private static void MarkWinnersInMatchups(List<Matchup> models)
         {
