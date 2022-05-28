@@ -15,7 +15,6 @@ namespace CompetitionUI
 
             WireUpLists();
         }
-
         private void WireUpLists()
         {
             selectTeamDropDown.DataSource = null;
@@ -31,7 +30,6 @@ namespace CompetitionUI
             prizesListBox.DataSource = selectedPrizes;
             prizesListBox.DisplayMember = "PlaceName";
         }
-
         private void addTeamButton_Click(object sender, EventArgs e)
         {
             Team t = (Team)selectTeamDropDown.SelectedItem;
@@ -44,26 +42,22 @@ namespace CompetitionUI
                 WireUpLists();
             }
         }
-
         private void createPrizeButton_Click(object sender, EventArgs e)
         {
             // Call the CreatePrizeForm() class when the button is pressed
             CreatePrizeForm frm = new CreatePrizeForm(this);
             frm.Show();
         }
-
         public void PrizeComplete(Prize model)
         {
             selectedPrizes.Add(model);
             WireUpLists();
         }
-
         public void TeamComplete(Team model)
         {
             selectedTeams.Add(model);
             WireUpLists();
         }
-
         private void createNewTeamLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             CreateTeamForm frm = new CreateTeamForm(this);
@@ -92,7 +86,6 @@ namespace CompetitionUI
             }
 
         }
-
         private void createCompetitionButton_Click(object sender, EventArgs e)
         {
             // Validate data
@@ -123,6 +116,10 @@ namespace CompetitionUI
             // Create all of the prizes entries
             // Create all of the team entries
             GlobalConfig.Connection.CreateCompetition(comp);
+
+            CompetitionViewerForm frm = new CompetitionViewerForm(comp);
+            frm.Show();
+            this.Close();
 
         }
 

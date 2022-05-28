@@ -200,6 +200,7 @@ namespace CompetitionUI
                     }
                 }
             }
+
             CompetitionLogic.UpdateCompetitionResults(competition);
             LoadMatchups((int)roundDropDown.SelectedItem);
         }

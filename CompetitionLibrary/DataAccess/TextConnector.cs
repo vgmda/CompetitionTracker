@@ -90,6 +90,8 @@ namespace CompetitionLibrary.DataAccess
             model.SaveRoundsToFile();
             competitions.Add(model);
             competitions.SaveToCompetitionFile();
+
+            CompetitionLogic.UpdateCompetitionResults(model);
         }
 
         public List<Competition> GetCompetition_All()

@@ -41,6 +41,8 @@ namespace CompetitionLibrary
 
             // Call Sql update method
             // GlobalConfig.Connection.UpdateMatchup(m);
+            toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
+            
 
         }
         private static void AdvanceWinners(List<Matchup> models, Competition competition)

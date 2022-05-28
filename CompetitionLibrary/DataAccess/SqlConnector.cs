@@ -86,6 +86,7 @@ namespace CompetitionLibrary.DataAccess
 
                 SaveCompetitionRounds(connection, model);
 
+                CompetitionLogic.UpdateCompetitionResults(model);
             }
         }
 
