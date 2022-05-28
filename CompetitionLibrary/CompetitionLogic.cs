@@ -1,4 +1,5 @@
 ﻿using CompetitionLibrary.Models;
+using System.Configuration;
 
 namespace CompetitionLibrary
 {
@@ -27,28 +28,15 @@ namespace CompetitionLibrary
                 foreach (Matchup rm in round)
                 {
                     // rm.Entries.Count == 1, if this is a bye entry
-                    if (rm.Entries.Any(x =>x.Score != 0) || rm.Entries.Count == 1)
+                    if (rm.Winner == null && (rm.Entries.Any(x =>x.Score != 0) || rm.Entries.Count == 1))
                     {
                         toScore.Add(rm);
                     }
                 }
             }
 
-            //if (teamOneScore > teamTwoScore)
-            //{
-            //    // Team one wins
-            //    m.Winner = m.Entries[0].TeamCompeting;
-            //}
-            //else if (teamTwoScore > teamOneScore)
-            //{
-            //    // Team two wins
-            //    m.Winner = m.Entries[1].TeamCompeting;
-            //}
-            //else
-            //{
-            //    // Tie games functionality is not handled in this app.. for now.
-            //    MessageBox.Show("ERROR: Tie games are not handled");
-            //}
+            MarkWinnersInMatchups(toScore);
+
 
             //foreach (List<Matchup> round in model.Rounds)
             //{
@@ -72,6 +60,74 @@ namespace CompetitionLibrary
 
             // Call Sql update method
             //GlobalConfig.Connection.UpdateMatchup(m);
+
+        }
+        private static void MarkWinnersInMatchups(List<Matchup> models)
+        {
+            // greater or lesser
+            string greaterWins = ConfigurationManager.AppSettings["greaterWins"];
+
+            foreach (Matchup m in models)
+            {
+                // Checks for bye week entry
+                if (m.Entries.Count == 1)
+                {
+                    m.Winner = m.Entries[0].TeamCompeting;
+                    // continue's job is to continue this foreach at the next iteration
+                    continue;
+                }
+
+                // 0 means false, or low score wins
+                if (greaterWins == "0")
+                {
+                    // Entry on the left is the winner
+                    if (m.Entries[0].Score < m.Entries[1].Score)
+                    {
+                        m.Winner = m.Entries[0].TeamCompeting;
+                    }
+                    // Entry on the left is the winner
+                    else if (m.Entries[1].Score < m.Entries[0].Score)
+                    {
+                        m.Winner = m.Entries[1].TeamCompeting;
+                    }
+                    else
+                    {
+                        throw new Exception("ERROR: Tie games are not handled");
+                    }
+                }
+                else
+                {
+                    // 1 means true, or high score wins
+                    if (m.Entries[0].Score > m.Entries[1].Score)
+                    {
+                        m.Winner = m.Entries[0].TeamCompeting;
+                    }
+                    else if (m.Entries[1].Score > m.Entries[0].Score)
+                    {
+                        m.Winner = m.Entries[1].TeamCompeting;
+                    }
+                    else
+                    {
+                        throw new Exception("ERROR: Tie games are not handled");
+                    }
+                } 
+            }
+
+            //if (teamOneScore > teamTwoScore)
+            //{
+            //    // Team one wins
+            //    m.Winner = m.Entries[0].TeamCompeting;
+            //}
+            //else if (teamTwoScore > teamOneScore)
+            //{
+            //    // Team two wins
+            //    m.Winner = m.Entries[1].TeamCompeting;
+            //}
+            //else
+            //{
+            //    MessageBox.Show("ERROR: Tie games are not handled");
+            //}
+
 
         }
         private static void CreateOtherRounds(Competition model, int rounds)
