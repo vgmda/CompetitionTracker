@@ -42,8 +42,21 @@ namespace CompetitionLibrary
             // Call Sql update method
             // GlobalConfig.Connection.UpdateMatchup(m);
             toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
+        }
 
+        private static int CheckCurrentRound(this Competition model)
+        {
+            int output = 1;
 
+            foreach (List<Matchup> round in model.Rounds)
+            {
+                if (round.All(x => x.Winner != null))
+                {
+                    output += 1;
+                }
+            }
+
+            return output;
         }
         private static void AdvanceWinners(List<Matchup> models, Competition competition)
         {

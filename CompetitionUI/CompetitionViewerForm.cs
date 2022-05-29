@@ -246,6 +246,7 @@ namespace CompetitionUI
             catch (Exception ex)
             {
                 MessageBox.Show($"Application error: {ex.Message}");
+                return;
             }
 
             LoadMatchups((int)roundDropDown.SelectedItem);
