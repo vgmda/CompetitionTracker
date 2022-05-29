@@ -10,7 +10,6 @@ namespace CompetitionUI
         BindingList<int> rounds = new BindingList<int>();
         BindingList<Matchup> selectedMatchups = new BindingList<Matchup>();
 
-
         public CompetitionViewerForm(Competition competitionModel)
         {
             InitializeComponent();
@@ -24,6 +23,7 @@ namespace CompetitionUI
             LoadRounds();
 
         }
+
         private void LoadFormData()
         {
             competitionName.Text = competition.CompetitionName;
@@ -201,7 +201,16 @@ namespace CompetitionUI
                 }
             }
 
-            CompetitionLogic.UpdateCompetitionResults(competition);
+            // Implement error handling on scoreButton_Click()
+            try
+            {
+                CompetitionLogic.UpdateCompetitionResults(competition);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Application error: {ex.Message}");
+            }
+
             LoadMatchups((int)roundDropDown.SelectedItem);
         }
     }

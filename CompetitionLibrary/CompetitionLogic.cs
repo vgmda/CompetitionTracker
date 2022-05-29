@@ -99,7 +99,7 @@ namespace CompetitionLibrary
                     }
                     else
                     {
-                        throw new Exception("ERROR: Tie games are not handled");
+                        throw new Exception("Tie games are not handled");
                     }
                 }
                 else
@@ -115,7 +115,7 @@ namespace CompetitionLibrary
                     }
                     else
                     {
-                        throw new Exception("ERROR: Tie games are not handled");
+                        throw new Exception("Tie games are not handled");
                     }
                 } 
             }
