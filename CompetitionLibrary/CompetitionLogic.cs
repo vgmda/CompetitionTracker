@@ -28,7 +28,7 @@ namespace CompetitionLibrary
                 foreach (Matchup rm in round)
                 {
                     // rm.Entries.Count == 1, if this is a bye entry
-                    if (rm.Winner == null && (rm.Entries.Any(x =>x.Score != 0) || rm.Entries.Count == 1))
+                    if (rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
                     {
                         toScore.Add(rm);
                     }
@@ -42,7 +42,7 @@ namespace CompetitionLibrary
             // Call Sql update method
             // GlobalConfig.Connection.UpdateMatchup(m);
             toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
-            
+
 
         }
         private static void AdvanceWinners(List<Matchup> models, Competition competition)
@@ -66,7 +66,7 @@ namespace CompetitionLibrary
                             }
                         }
                     }
-                } 
+                }
             }
         }
         private static void MarkWinnersInMatchups(List<Matchup> models)
@@ -117,7 +117,7 @@ namespace CompetitionLibrary
                     {
                         throw new Exception("Tie games are not handled");
                     }
-                } 
+                }
             }
 
             //if (teamOneScore > teamTwoScore)
