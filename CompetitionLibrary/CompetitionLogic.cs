@@ -21,6 +21,7 @@ namespace CompetitionLibrary
         }
         public static void UpdateCompetitionResults(Competition model)
         {
+            int startingRound = model.CheckCurrentRound();
             List<Matchup> toScore = new List<Matchup>();
 
             foreach (List<Matchup> round in model.Rounds)
@@ -42,6 +43,13 @@ namespace CompetitionLibrary
             // Call Sql update method
             // GlobalConfig.Connection.UpdateMatchup(m);
             toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchup(x));
+            int endingRound = model.CheckCurrentRound();
+
+            // If the round has advanced
+            if (endingRound > startingRound)
+            {
+                // Alert users
+            }
         }
 
         private static int CheckCurrentRound(this Competition model)
