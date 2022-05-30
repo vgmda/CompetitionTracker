@@ -49,7 +49,30 @@ namespace CompetitionLibrary
             if (endingRound > startingRound)
             {
                 // Alert users
+                // EmailLogic.SendEmail();
             }
+        }
+        private static void AlertUsersToNewRound(this Competition model)
+        {
+            int currentRoundNumber = model.CheckCurrentRound();
+            List<Matchup> currentRound = model.Rounds.Where(x => x.First().MatchupRound == currentRoundNumber).First();
+
+            foreach (Matchup matchup in currentRound)
+            {
+                foreach (MatchupEntry me in matchup.Entries)
+                {
+                    foreach (Person p in me.TeamCompeting.TeamMembers)
+                    {
+                        AlertPersonToNewRound(p, me.TeamCompeting.TeamName, matchup.Entries.Where(x => x.TeamCompeting != me.TeamCompeting).FirstOrDefault());
+
+                    }
+                }
+            }
+        }
+
+        private static void AlertPersonToNewRound(Person p, string teamName, MatchupEntry matchupEntry)
+        {
+            
         }
 
         private static int CheckCurrentRound(this Competition model)
