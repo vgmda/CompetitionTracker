@@ -51,9 +51,10 @@ namespace CompetitionLibrary
             {
                 // Alert users
                 // EmailLogic.SendEmail();
+                model.AlertUsersToNewRound();
             }
         }
-        private static void AlertUsersToNewRound(this Competition model)
+        public static void AlertUsersToNewRound(this Competition model)
         {
             int currentRoundNumber = model.CheckCurrentRound();
             List<Matchup> currentRound = model.Rounds.Where(x => x.First().MatchupRound == currentRoundNumber).First();
@@ -70,16 +71,14 @@ namespace CompetitionLibrary
             }
         }
 
-        private static void AlertPersonToNewRound(Person p, string teamName, MatchupEntry competitor)
+        private static void AlertPersonToNewRound(Person p, string teamName, MatchupEntry? competitor)
         {
             // TODO - Add a more comprehensive email check in the future
             if (p.EmailAddress.Length == 0)
             {
                 return;
             }
-
-            string from = "";
-            List<string> to = new List<string>();
+            string to = "";
             string subject = "";
             StringBuilder body = new StringBuilder();
 
@@ -101,11 +100,11 @@ namespace CompetitionLibrary
                 body.AppendLine("Enjoy your round off!");
             }
 
-            to.Add(p.EmailAddress);
-            
+            to = p.EmailAddress;
 
 
-            EmailLogic.SendEmail(from, to, subject, body.ToString());
+
+            EmailLogic.SendEmail(to, subject, body.ToString());
         }
 
         private static int CheckCurrentRound(this Competition model)
