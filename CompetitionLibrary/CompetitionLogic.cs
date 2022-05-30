@@ -1,5 +1,6 @@
 ﻿using CompetitionLibrary.Models;
 using System.Configuration;
+using System.Text;
 
 namespace CompetitionLibrary
 {
@@ -64,15 +65,47 @@ namespace CompetitionLibrary
                     foreach (Person p in me.TeamCompeting.TeamMembers)
                     {
                         AlertPersonToNewRound(p, me.TeamCompeting.TeamName, matchup.Entries.Where(x => x.TeamCompeting != me.TeamCompeting).FirstOrDefault());
-
                     }
                 }
             }
         }
 
-        private static void AlertPersonToNewRound(Person p, string teamName, MatchupEntry matchupEntry)
+        private static void AlertPersonToNewRound(Person p, string teamName, MatchupEntry competitor)
         {
+            // TODO - Add a more comprehensive email check in the future
+            if (p.EmailAddress.Length == 0)
+            {
+                return;
+            }
+
+            string from = "";
+            List<string> to = new List<string>();
+            string subject = "";
+            StringBuilder body = new StringBuilder();
+
+            if (competitor != null)
+            {
+                subject = $"You have a new matchup with {competitor.TeamCompeting.TeamName}";
+
+                body.AppendLine("<h1>You have a new matchup</h1>");
+                body.Append("<strong>Competitor: </strong>");
+                body.Append(competitor.TeamCompeting.TeamName);
+                body.AppendLine();
+                body.AppendLine();
+                body.AppendLine("Enjoy the competition!");
+            }
+            else
+            {
+                subject = "You have a bye week this round";
+
+                body.AppendLine("Enjoy your round off!");
+            }
+
+            to.Add(p.EmailAddress);
             
+
+
+            EmailLogic.SendEmail(from, to, subject, body.ToString());
         }
 
         private static int CheckCurrentRound(this Competition model)
