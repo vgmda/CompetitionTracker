@@ -70,7 +70,6 @@ namespace CompetitionLibrary
                 }
             }
         }
-
         private static void AlertPersonToNewRound(Person p, string teamName, MatchupEntry? competitor)
         {
             // TODO - Add a more comprehensive email check in the future
@@ -106,7 +105,6 @@ namespace CompetitionLibrary
 
             EmailLogic.SendEmail(to, subject, body.ToString());
         }
-
         private static int CheckCurrentRound(this Competition model)
         {
             int output = 1;
@@ -117,9 +115,18 @@ namespace CompetitionLibrary
                 {
                     output += 1;
                 }
+                else
+                {
+                    return output;
+                }
             }
 
-            return output;
+            // Competition is complete
+            CompleteCompetition(model);
+        }
+        private static void CompleteCompetition(Competition model)
+        {
+            
         }
         private static void AdvanceWinners(List<Matchup> models, Competition competition)
         {

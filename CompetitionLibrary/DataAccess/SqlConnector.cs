@@ -340,5 +340,10 @@ namespace CompetitionLibrary.DataAccess
                 }
             }
         }
+
+        public void CompleteCompetition(Competition model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
