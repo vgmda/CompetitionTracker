@@ -127,8 +127,50 @@ namespace CompetitionLibrary
         private static void CompleteCompetition(Competition model)
         {
             GlobalConfig.Connection.CompleteCompetition(model);
+            // LinQ expression
+            Team winners = model.Rounds.Last().First().Winner;
+            Team runnerUp = model.Rounds.Last().First().Entries.Where(x => x.TeamCompeting != winners).First().TeamCompeting;
 
-               
+            decimal winnerPrize = 0;
+            decimal runnerUpPrize = 0;
+
+            //foreach (List<Matchup> round in model.Rounds)
+            //{
+            //    foreach (Matchup matchup in round)
+            //    {
+            //        int last = round.Count - 1;
+            //        if (round.Count == last)
+            //        {
+            //            winners = matchup.Winner;
+            //        }
+            //    }
+            //}
+
+            if (model.Prizes.Count > 0)
+            {
+                decimal totalIncome = model.EnteredTeams.Count * model.EntryFee;
+                Prize firstPlacePrize = model.Prizes.Where(x => x.PlaceNumber == 1).FirstOrDefault();
+
+                if (firstPlacePrize != null)
+                {
+
+                }
+            }
+        }
+        private static decimal CalculatePrizePayout(this Prize prize, decimal totalIncome)
+        {
+            decimal output = 0;
+
+            if (prize.PrizeAmount > 0)
+            {
+                output = prize.PrizeAmount;
+            }
+            else
+            {
+                output = Decimal.Multiply(totalIncome, Convert.ToDecimal(prize.PrizePercentage / 100));
+            }
+
+            return output;
         }
         private static void AdvanceWinners(List<Matchup> models, Competition competition)
         {
