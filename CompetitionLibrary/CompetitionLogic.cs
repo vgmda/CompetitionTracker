@@ -126,7 +126,9 @@ namespace CompetitionLibrary
         }
         private static void CompleteCompetition(Competition model)
         {
-            
+            GlobalConfig.Connection.CompleteCompetition(model);
+
+               
         }
         private static void AdvanceWinners(List<Matchup> models, Competition competition)
         {
