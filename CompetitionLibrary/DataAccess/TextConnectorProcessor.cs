@@ -6,6 +6,7 @@ namespace CompetitionLibrary.DataAccess.TextHelpers
     public static class TextConnectorProcessor
     {
         public static string FullFilePath(this string fileName)
+        
         {
 
             // C:\Users\vasile.gancin\Documents\CompetitionTracker\Prize.csv

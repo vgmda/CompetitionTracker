@@ -5,6 +5,7 @@
     /// </summary>
     public class Competition
     {
+        public event EventHandler<DateTime> OnCompetitionComplete;
         /// <summary>
         /// The unique identifier for the competition
         /// </summary>
@@ -29,6 +30,10 @@
         /// The matchups per round
         /// </summary>
         public List<List<Matchup>> Rounds { get; set; } = new List<List<Matchup>>();
+        public void CompleteCompetition()
+        {
+            OnCompetitionComplete?.Invoke(this, DateTime.Now);
+        }
 
     }
 }

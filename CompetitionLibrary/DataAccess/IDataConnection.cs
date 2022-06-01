@@ -10,6 +10,7 @@ namespace CompetitionLibrary.DataAccess
         void CreateTeam(Team model);
         void CreateCompetition(Competition model);
         void UpdateMatchup(Matchup model);
+        void CompleteCompetition(Competition model);
         List<Person> GetPerson_All();
         List<Team> GetTeam_All();
         List<Competition> GetCompetition_All();
