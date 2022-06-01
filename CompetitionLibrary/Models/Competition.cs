@@ -5,6 +5,8 @@
     /// </summary>
     public class Competition
     {
+
+
         /// <summary>
         /// The unique identifier for the competition
         /// </summary>
