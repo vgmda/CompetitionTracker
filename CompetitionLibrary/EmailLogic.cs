@@ -14,7 +14,7 @@ public static class EmailLogic
         MailMessage mail = new MailMessage();
         foreach (string email in to)
         {
-            mail.To.Add(email); 
+            mail.To.Add(email);
         }
         foreach (string email in bcc)
         {

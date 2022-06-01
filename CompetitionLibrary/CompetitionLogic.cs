@@ -179,7 +179,7 @@ namespace CompetitionLibrary
             body.AppendLine("<h1>We have a WINNER!</h1>");
             body.AppendLine("<p>Congratulations to our winner on a great competition.</p>");
             body.AppendLine("<br/>");
-        
+
             if (winnerPrize > 0)
             {
                 body.AppendLine($"<p>{winners.TeamName} will receive ${winnerPrize}</p>");
@@ -188,13 +188,23 @@ namespace CompetitionLibrary
             {
                 body.AppendLine($"<p>{runnerUp.TeamName} will receive ${runnerUpPrize}</p>");
             }
-            
+
             body.AppendLine("<p>Thanks for the participation!</p>");
 
             List<string> bcc = new List<string>();
 
+            foreach (Team t in model.EnteredTeams)
+            {
+                foreach (Person p in t.TeamMembers)
+                {
+                    if (p.EmailAddress.Length > 0)
+                    {
+                        bcc.Add(p.EmailAddress);
+                    }
+                }
+            }
 
-            EmailLogic.SendEmail(to, subject, body.ToString());
+            EmailLogic.SendEmail(new List<string>(), bcc, subject, body.ToString());
 
         }
         private static decimal CalculatePrizePayout(this Prize prize, decimal totalIncome)
