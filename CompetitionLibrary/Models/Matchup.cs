@@ -25,9 +25,7 @@
         /// Which round this match is a part of
         /// </summary>
         public int MatchupRound { get; set; }
-        /// <summary>
-        /// Display the name of teams in the Teams Competing Entry
-        /// </summary>
+
         public string DisplayName
         {
             get

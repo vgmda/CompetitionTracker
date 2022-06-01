@@ -117,8 +117,6 @@ namespace CompetitionUI
             // Create all of the team entries
             GlobalConfig.Connection.CreateCompetition(comp);
 
-            comp.AlertUsersToNewRound();
-
             CompetitionViewerForm frm = new CompetitionViewerForm(comp);
             frm.Show();
             this.Close();

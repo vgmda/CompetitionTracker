@@ -15,7 +15,7 @@ namespace CompetitionUI
 
             // Initialize the database connections
 
-            CompetitionLibrary.GlobalConfig.InitializeConnections(DatabaseType.TextFile);
+            CompetitionLibrary.GlobalConfig.InitializeConnections(DatabaseType.Sql);
             // Pre-refactoring code
 
             Application.Run(new CompetitionDashboardForm());

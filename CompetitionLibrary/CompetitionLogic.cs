@@ -1,6 +1,5 @@
 ﻿using CompetitionLibrary.Models;
 using System.Configuration;
-using System.Text;
 
 namespace CompetitionLibrary
 {
@@ -50,61 +49,9 @@ namespace CompetitionLibrary
             if (endingRound > startingRound)
             {
                 // Alert users
-                // EmailLogic.SendEmail();
-                // model.AlertUsersToNewRound();
             }
         }
-        public static void AlertUsersToNewRound(this Competition model)
-        {
-            int currentRoundNumber = model.CheckCurrentRound();
-            List<Matchup> currentRound = model.Rounds.Where(x => x.First().MatchupRound == currentRoundNumber).First();
 
-            foreach (Matchup matchup in currentRound)
-            {
-                foreach (MatchupEntry me in matchup.Entries)
-                {
-                    foreach (Person p in me.TeamCompeting.TeamMembers)
-                    {
-                        AlertPersonToNewRound(p, me.TeamCompeting.TeamName, matchup.Entries.Where(x => x.TeamCompeting != me.TeamCompeting).FirstOrDefault());
-                    }
-                }
-            }
-        }
-        private static void AlertPersonToNewRound(Person p, string teamName, MatchupEntry? competitor)
-        {
-            // TODO - Add a more comprehensive email check in the future
-            if (p.EmailAddress.Length == 0)
-            {
-                return;
-            }
-            string to = "";
-            string subject = "";
-            StringBuilder body = new StringBuilder();
-
-            if (competitor != null)
-            {
-                subject = $"You have a new matchup with {competitor.TeamCompeting.TeamName}";
-
-                body.AppendLine("<h1>You have a new matchup</h1>");
-                body.Append("<strong>Competitor: </strong>");
-                body.Append(competitor.TeamCompeting.TeamName);
-                body.AppendLine();
-                body.AppendLine();
-                body.AppendLine("Enjoy the competition!");
-            }
-            else
-            {
-                subject = "You have a bye week this round";
-
-                body.AppendLine("Enjoy your round off!");
-            }
-
-            to = p.EmailAddress;
-
-
-
-            //EmailLogic.SendEmail(to, subject, body.ToString());
-        }
         private static int CheckCurrentRound(this Competition model)
         {
             int output = 1;
@@ -113,114 +60,8 @@ namespace CompetitionLibrary
             {
                 if (round.All(x => x.Winner != null))
                 {
-                    /*
-                     * 1 , 2 , 3 , 4 , 5
-                       +   +   +   +   +
-                       2   3   4   5   6
-                     */
-                    // output = output + 1
                     output += 1;
                 }
-                else
-                {
-                    return output;
-                }
-            }
-
-            // Competition is complete
-            CompleteCompetition(model);
-
-            return output - 1;
-        }
-        private static void CompleteCompetition(Competition model)
-        {
-            GlobalConfig.Connection.CompleteCompetition(model);
-            // LinQ expression
-            Team winners = model.Rounds.Last().First().Winner;
-            Team runnerUp = model.Rounds.Last().First().Entries.Where(x => x.TeamCompeting != winners).First().TeamCompeting;
-
-            decimal winnerPrize = 0;
-            decimal runnerUpPrize = 0;
-
-            //foreach (List<Matchup> round in model.Rounds)
-            //{
-            //    foreach (Matchup matchup in round)
-            //    {
-            //        int last = round.Count - 1;
-            //        if (round.Count == last)
-            //        {
-            //            winners = matchup.Winner;
-            //        }
-            //    }
-            //}
-
-            if (model.Prizes.Count > 0)
-            {
-                decimal totalIncome = model.EnteredTeams.Count * model.EntryFee;
-                Prize firstPlacePrize = model.Prizes.Where(x => x.PlaceNumber == 1).FirstOrDefault();
-                Prize secondPlacePrize = model.Prizes.Where(x => x.PlaceNumber == 2).FirstOrDefault();
-
-                if (firstPlacePrize != null)
-                {
-                    winnerPrize = firstPlacePrize.CalculatePrizePayout(totalIncome);
-                }
-                if (secondPlacePrize != null)
-                {
-                    runnerUpPrize = secondPlacePrize.CalculatePrizePayout(totalIncome);
-                }
-            }
-
-            // Send Email to all competition
-            string subject = "";
-            StringBuilder body = new StringBuilder();
-
-            subject = $"In {model.CompetitionName}, {winners.TeamName} has won!";
-
-            body.AppendLine("<h1>We have a WINNER!</h1>");
-            body.AppendLine("<p>Congratulations to our winner on a great competition.</p>");
-            body.AppendLine("<br/>");
-
-            if (winnerPrize > 0)
-            {
-                body.AppendLine($"<p>{winners.TeamName} will receive ${winnerPrize}</p>");
-            }
-            if (runnerUpPrize > 0)
-            {
-                body.AppendLine($"<p>{runnerUp.TeamName} will receive ${runnerUpPrize}</p>");
-            }
-
-            body.AppendLine("<p>Thanks for the participation!</p>");
-
-            List<string> bcc = new List<string>();
-
-            foreach (Team t in model.EnteredTeams)
-            {
-                foreach (Person p in t.TeamMembers)
-                {
-                    if (p.EmailAddress.Length > 0)
-                    {
-                        bcc.Add(p.EmailAddress);
-                    }
-                }
-            }
-
-            //EmailLogic.SendEmail(new List<string>(), bcc, subject, body.ToString());
-
-            // Complete Competition
-            model.CompleteCompetition();
-
-        }
-        private static decimal CalculatePrizePayout(this Prize prize, decimal totalIncome)
-        {
-            decimal output = 0;
-
-            if (prize.PrizeAmount > 0)
-            {
-                output = prize.PrizeAmount;
-            }
-            else
-            {
-                output = Decimal.Multiply(totalIncome, Convert.ToDecimal(prize.PrizePercentage / 100));
             }
 
             return output;

@@ -16,19 +16,12 @@ namespace CompetitionUI
 
             competition = competitionModel;
 
-            competition.OnCompetitionComplete += Competition_OnCompetitionComplete;
-
             WireUpLists();
 
             LoadFormData();
 
             LoadRounds();
 
-        }
-
-        private void Competition_OnCompetitionComplete(object? sender, DateTime e)
-        {
-            this.Close();
         }
 
         private void LoadFormData()

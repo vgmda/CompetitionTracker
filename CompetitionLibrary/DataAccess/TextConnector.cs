@@ -106,18 +106,5 @@ namespace CompetitionLibrary.DataAccess
         {
             model.UpdateMatchupToFile();
         }
-
-        public void CompleteCompetition(Competition model)
-        {
-            List<Competition> competitions = GlobalConfig.CompetitionFile
-                .FullFilePath()
-                .LoadFile()
-                .ConvertToCompetition();
-
-            competitions.Remove(model);
-            competitions.SaveToCompetitionFile();
-
-            CompetitionLogic.UpdateCompetitionResults(model);
-        }
     }
 }
