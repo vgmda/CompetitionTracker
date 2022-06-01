@@ -113,6 +113,12 @@ namespace CompetitionLibrary
             {
                 if (round.All(x => x.Winner != null))
                 {
+                    /*
+                     * 1 , 2 , 3 , 4 , 5
+                       +   +   +   +   +
+                       2   3   4   5   6
+                     */
+                    // output = output + 1
                     output += 1;
                 }
                 else
@@ -123,6 +129,8 @@ namespace CompetitionLibrary
 
             // Competition is complete
             CompleteCompetition(model);
+
+            return output - 1;
         }
         private static void CompleteCompetition(Competition model)
         {
@@ -150,12 +158,35 @@ namespace CompetitionLibrary
             {
                 decimal totalIncome = model.EnteredTeams.Count * model.EntryFee;
                 Prize firstPlacePrize = model.Prizes.Where(x => x.PlaceNumber == 1).FirstOrDefault();
+                Prize secondPlacePrize = model.Prizes.Where(x => x.PlaceNumber == 2).FirstOrDefault();
 
                 if (firstPlacePrize != null)
                 {
-
+                    winnerPrize = firstPlacePrize.CalculatePrizePayout(totalIncome);
+                }
+                if (secondPlacePrize != null)
+                {
+                    runnerUpPrize = secondPlacePrize.CalculatePrizePayout(totalIncome);
                 }
             }
+
+            // Send Email to all competition
+            string subject = "";
+            StringBuilder body = new StringBuilder();
+
+            subject = $"In {model.CompetitionName}, {winners.TeamName} has won!";
+
+            body.AppendLine("<h1>We have a WINNER!</h1>");
+            body.Append("<p>Congratulations to our winner on a great competition.</p>");
+            body.Append(competitor.TeamCompeting.TeamName);
+            body.AppendLine();
+            body.AppendLine();
+            body.AppendLine("Enjoy the competition!");
+
+            to = p.EmailAddress;
+
+            EmailLogic.SendEmail(to, subject, body.ToString());
+
         }
         private static decimal CalculatePrizePayout(this Prize prize, decimal totalIncome)
         {
