@@ -177,13 +177,22 @@ namespace CompetitionLibrary
             subject = $"In {model.CompetitionName}, {winners.TeamName} has won!";
 
             body.AppendLine("<h1>We have a WINNER!</h1>");
-            body.Append("<p>Congratulations to our winner on a great competition.</p>");
-            body.Append(competitor.TeamCompeting.TeamName);
-            body.AppendLine();
-            body.AppendLine();
-            body.AppendLine("Enjoy the competition!");
+            body.AppendLine("<p>Congratulations to our winner on a great competition.</p>");
+            body.AppendLine("<br/>");
+        
+            if (winnerPrize > 0)
+            {
+                body.AppendLine($"<p>{winners.TeamName} will receive ${winnerPrize}</p>");
+            }
+            if (runnerUpPrize > 0)
+            {
+                body.AppendLine($"<p>{runnerUp.TeamName} will receive ${runnerUpPrize}</p>");
+            }
+            
+            body.AppendLine("<p>Thanks for the participation!</p>");
 
-            to = p.EmailAddress;
+            List<string> bcc = new List<string>();
+
 
             EmailLogic.SendEmail(to, subject, body.ToString());
 
